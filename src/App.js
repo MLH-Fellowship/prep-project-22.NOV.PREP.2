@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import './App.css';
-import Box from "./Components/Box";
+import Box from "./Components/Box.jsx";
 import logo from './mlh-prep.png'
 
 function App() {
