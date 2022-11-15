@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import './App.css';
+import Box from "./Components/Box";
 import logo from './mlh-prep.png'
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
+  const [generic, setGeneric]=useState("app");
 
   useEffect(() => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
@@ -18,6 +20,8 @@ function App() {
           } else {
             setIsLoaded(true);
             setResults(result);
+            setGeneric("app "+result.weather[0].main);
+
           }
         },
         (error) => {
@@ -48,7 +52,12 @@ function App() {
           </>}
         </div>
       </div>
-    </>
+      <p className="required-things-heading">Things you should carry in your bag 🎒</p>
+      {isLoaded && results && <Box weather={results.weather[0].main}/>}
+      </main>
+      
+    </div>
+  
   }
 }
 
