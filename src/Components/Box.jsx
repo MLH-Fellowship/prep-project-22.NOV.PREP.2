@@ -1,7 +1,7 @@
 
 import React from "react";
 import './assets/css/Box.css';
-import requiredThings from "./Js/requiredThings";
+import requiredThings from "./assets/Js/requiredThings";
 
 
 function Item(props) {
