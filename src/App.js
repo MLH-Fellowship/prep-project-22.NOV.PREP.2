@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import logo from './mlh-prep.png'
 import { useFetch } from "./Hooks/useFetch";
-import DailyForecast from "./Components/DailyForecast";
-import HourlyForecast from "./Components/HourlyForecast";
+import DailyForecast from "./Components/DailyForecast/index";
+import HourlyForecast from "./Components/HourlyForecast/index";
 
 function App() {
   const [city, setCity] = useState("New York City"); 
