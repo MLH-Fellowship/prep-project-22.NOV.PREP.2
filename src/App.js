@@ -7,6 +7,9 @@ function App() {
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [city, setCity] = useState('New York City');
 	const [results, setResults] = useState(null);
+	const [weatherInfo, setWeatherInfo] = useState("");
+
+
 
 	useEffect(() => {
 		fetch(
@@ -24,20 +27,42 @@ function App() {
 					} else {
 						setIsLoaded(true);
 						setResults(result);
+						setWeatherInfo(result.weather[0].main);
+
 					}
 				},
 				(error) => {
 					setIsLoaded(true);
 					setError(error);
+					setWeatherInfo(error);
+
 				},
 			);
 	}, [city]);
+
+	// function to change weather background
+	const weather = (weatherInfo) => {
+		switch (weatherInfo) {
+		  case "Rain":
+			return "rainy"
+		  case "Clouds":
+			return "cloudy"
+		  case "Snow":
+			return "snowy"
+		  case "Clear":
+			return "clear"
+		  case "Haze":
+			return "haze"
+		  default:
+			return "default"
+		}
+	  };
 
 	if (error) {
 		return <div>Error: {error.message}</div>;
 	} else {
 		return (
-			<>
+			<div className={weather(weatherInfo)}>
 				<img className="logo" src={logo} alt="MLH Prep Logo"></img>
 				<div>
 					<h2>Enter a city below 👇</h2>
@@ -58,7 +83,7 @@ function App() {
 						)}
 					</div>
 				</div>
-			</>
+			</div>
 		);
 	}
 }
