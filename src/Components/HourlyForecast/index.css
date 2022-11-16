@@ -1,0 +1,10 @@
+.graph{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.graph div{
+    width: 50%;
+    height: 40%;
+ }
