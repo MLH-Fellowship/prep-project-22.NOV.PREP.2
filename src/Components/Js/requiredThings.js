@@ -94,6 +94,12 @@ const requiredThings = {
 		Watch: Watch,
 		'Mosquito Repellent': MosquitoRepellent,
 	},
+	
+	Sunny: {
+		Sunglasses: Sunglasses,
+		BaseballCap: Cap,
+		Sunscreen: Sunscreen,
+	},
 };
 
 export default requiredThings;
