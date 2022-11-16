@@ -31,13 +31,13 @@ input {
 }
 /* background image styling */
 .rainy {
-	background-image: url(./weather_background/rainy.jpeg);
+	background-image: url(./background_images/rainy.jpeg);
 	height: 100vh;
 	background-repeat: no-repeat;
 	background-size: cover;
   }
   .cloudy {
-	background-image: url(./weather_background/clouds.jpg);
+	background-image: url(./background_images/clouds.jpg);
 	height: 100vh;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -45,7 +45,7 @@ input {
   
   }
   .snowy {
-	background-image: url(./weather_background/snow.jpeg);
+	background-image: url(./background_images/snow.jpeg);
 	height: 100vh;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -53,7 +53,7 @@ input {
   
   }
   .clear {
-	background-image: url(./weather_background/clear.jpg);
+	background-image: url(./background_images/clear.jpg);
 	height: 100vh;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -61,14 +61,14 @@ input {
   
   }
   .haze {
-	background-image: url(./weather_background/haze.jpg);
+	background-image: url(./background_images/haze.jpg);
 	height: 100vh;
 	background-repeat: no-repeat;
 	background-size: cover;  
   
   }
   .default{
-	background-image: url(./weather_background/default.jpeg);
+	background-image: url(./background_images/default.jpeg);
 	height: 100vh;
 	background-repeat: no-repeat;
 	background-size: cover;
