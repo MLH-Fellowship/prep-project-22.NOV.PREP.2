@@ -22,7 +22,7 @@ const HourlyForecast = ({ data }) => {
       const [temp, hours] = data.data.reduce(
         ([a, b], item) => {
           a.push(item.main.temp);
-          b.push(dateFormat(new Date(item.dt_txt), "HH:MM"));
+          b.push(dateFormat(new Date(item.dt_txt), "HH:MM  TT"));
           return [a, b];
         },
         [[], []]
@@ -54,16 +54,28 @@ const HourlyForecast = ({ data }) => {
     },
     scales: {
       y: { 
+        title: {
+          display: true,
+          color: "white",
+          text: 'Temperature (ºC)'
+        },
         grid: {
-          display: false
+          borderColor: "white",
+          display: false,
         },
         ticks: {
           color: "white", 
           beginAtZero: true
         }
       },
-      x: {   
+      x: {  
+        title: {
+          display: true,
+          color: "white",
+          text: 'Hours'
+        }, 
         grid: {
+          borderColor: "white",
           display: false
         },
         ticks: {
