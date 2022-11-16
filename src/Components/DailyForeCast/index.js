@@ -3,6 +3,7 @@ import "./index.css";
 import dateFormat from "dateformat";
 
 const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard}) => {
+  console.log(data)
   const formatDate = (date) => {
     const currentDate = new Date(date);
     return dateFormat(currentDate, "ddd, mmmm dS");

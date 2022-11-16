@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
 import { useFetch } from "./Hooks/useFetch";
-import DailyForecast from "./Components/DailyForeCast";
+import DailyForecast from "./Components/DailyForecast";
+import HourlyForecast from "./Components/HourlyForecast";
 
 function App() {
   const [city, setCity] = useState("New York City"); 
@@ -44,8 +45,7 @@ function App() {
     if(forecastData){
       groupDataByDate()
     }
-    console.log(forecastData)
-
+ 
   },[forecastData])
 
   if (cWeatherError) {
@@ -67,11 +67,15 @@ function App() {
             <i><p>{cWeatherData.name}, {cWeatherData.sys.country}</p></i>
           </>}
         </div>
-        
-        <div className="DailyForecast">
+
+        {forecastError?  <div>Error: {forecastError.message}</div>: (
+          <div className="DailyForecast">
         {forecastLoading && <h2>Loading...</h2>}
         {!forecastLoading && <DailyForecast data={forecastDataGrouped} setActiveWeatherCard={setActiveWeatherCard} activeWeatherCard={activeWeatherCard} />}
+        {!forecastLoading && forecastDataGrouped != null && <HourlyForecast data={forecastDataGrouped[activeWeatherCard]} />}
         </div>
+        )} 
+        
       </div>
     </>
   }
