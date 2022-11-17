@@ -68,7 +68,9 @@ function App() {
 						</div>
 					</div>
 					<p className="required-things-heading">Things you should carry in your bag 🎒</p>
-					{isLoaded && results && <Box weather={results.weather[0].main} />}
+					{isLoaded && results && <Box itemType="things" weather={results.weather[0].main} />}
+					<p className="required-things-heading">Things you eat 😋</p>
+					{isLoaded && results && <Box itemType="food" weather={results.weather[0].main} />}
 				</main>
 			</div>
 		);

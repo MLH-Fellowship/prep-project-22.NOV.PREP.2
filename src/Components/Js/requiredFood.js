@@ -1,30 +1,30 @@
 import * as icons from '../assets/requiredFood/icons.js';
 
-const requiredThings = {
+const requiredFood = {
 	Thunderstorm: {
 		Nuggets: icons.nuggets,
-		Coffee: icons.Coffee,
+		Coffee: icons.coffee,
 		Spaghetti: icons.spaghetti,
 	},
 	Drizzle: {
-		Chocoloate: icons.Chocoloate,
+		Chocoloate: icons.chocolate,
 		Pancake: icons.pancake,
-		Coffee: icons.Coffee,
+		Coffee: icons.coffee,
 	},
 	Rain: {
-		Chocoloate: icons.Chocoloate,
-		Coffee: icons.Coffee,
+		Chocoloate: icons.chocolate,
+		Coffee: icons.coffee,
 		Steak: icons.steak,
 	},
 	Snow: {
 		Steak: icons.steak,
-		Chocoloate: icons.Chocoloate,
-		Coffee: icons.Coffee,
+		Chocoloate: icons.chocolate,
+		Coffee: icons.coffee,
 	},
 	Mist: {
 		Burger: icons.burger,
 		Waffles: icons.waffles,
-		Coffee: icons.Coffee,
+		Coffee: icons.coffee,
 	},
 	Smoke: {
 		Crackers: icons.cracker,
@@ -44,7 +44,7 @@ const requiredThings = {
 	Fog: {
 		Burger: icons.burger,
 		Waffles: icons.waffles,
-		Coffee: icons.Coffee,
+		Coffee: icons.coffee,
 	},
 	Sand: {
 		Smoothie: icons.smoothie,
@@ -58,7 +58,7 @@ const requiredThings = {
 	},
 	Squall: {
 		Waffles: icons.waffles,
-		Coffee: icons.Coffee,
+		Coffee: icons.coffee,
 		pancake: icons.pancake,
 	},
 	Tornado: {
@@ -83,4 +83,4 @@ const requiredThings = {
 	},
 };
 
-export default requiredThings;
+export default requiredFood;
