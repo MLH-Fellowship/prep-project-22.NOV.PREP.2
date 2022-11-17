@@ -57,7 +57,7 @@ function App() {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {
-    return <div className= "{[generic]} {weather(weatherInfo)}">
+    return <div className=  {`{[generic]} ${weather(weatherInfo)}`} >
       <main>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
