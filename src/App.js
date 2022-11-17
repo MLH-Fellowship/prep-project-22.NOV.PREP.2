@@ -4,11 +4,14 @@ import Box from "./Components/Box.jsx";
 import logo from './mlh-prep.png'
 
 function App() {
+
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
   const [generic, setGeneric]=useState("app");
+  const [weatherInfo, setWeatherInfo] = useState("");
+
   useEffect(() => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
@@ -20,19 +23,41 @@ function App() {
             setIsLoaded(true);
             setResults(result);
             setGeneric("app "+result.weather[0].main);
+            setWeatherInfo(result.weather[0].main);
+
           }
         },
         (error) => {
           setIsLoaded(true);
           setError(error);
+          setWeatherInfo(error);
+
         }
       )
   }, [city])
+  
+  // function to change weather background
+	const weather = (weatherInfo) => {
+		switch (weatherInfo) {
+		  case "Rain":
+			return "rainy"
+		  case "Clouds":
+			return "cloudy"
+		  case "Snow":
+			return "snowy"
+		  case "Clear":
+			return "clear"
+		  case "Haze":
+			return "haze"
+		  default:
+			return "default"
+		}
+	  };
 
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {
-    return <div className={[generic]}>
+    return <div className= "{[generic]} {weather(weatherInfo)}">
       <main>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
@@ -61,6 +86,7 @@ function App() {
       
     </div>
   }
+
 }
 
 export default App;

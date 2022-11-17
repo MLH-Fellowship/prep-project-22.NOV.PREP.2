@@ -29,3 +29,47 @@ input {
 	padding: 10px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
+/* background image styling */
+.rainy {
+	background-image: url(./background_images/rainy.jpeg);
+	height: 100vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+  }
+  .cloudy {
+	background-image: url(./background_images/clouds.jpg);
+	height: 100vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+  
+  
+  }
+  .snowy {
+	background-image: url(./background_images/snow.jpeg);
+	height: 100vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+  
+  
+  }
+  .clear {
+	background-image: url(./background_images/clear.jpg);
+	height: 100vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+  
+  
+  }
+  .haze {
+	background-image: url(./background_images/haze.jpg);
+	height: 100vh;
+	background-repeat: no-repeat;
+	background-size: cover;  
+  
+  }
+  .default{
+	background-image: url(./background_images/default.jpeg);
+	height: 100vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+  }
