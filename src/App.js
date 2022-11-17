@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png';
 import { useFetch } from './Hooks/useFetch';
@@ -108,7 +108,7 @@ function App() {
 				</div>
 			</>
 		);
-	}
+	
 }
 
 export default App;
