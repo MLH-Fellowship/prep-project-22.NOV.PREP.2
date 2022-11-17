@@ -1,66 +1,114 @@
 import { useEffect, useState } from "react";
 import './App.css';
-import Box from "./Components/Box.jsx";
-import logo from './mlh-prep.png'
+import logo from './mlh-prep.png';
+import { useFetch } from './Hooks/useFetch';
+import DailyForecast from './Components/DailyForecast';
+import HourlyForecast from './Components/HourlyForecast';
 
 function App() {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [city, setCity] = useState("New York City")
-  const [results, setResults] = useState(null);
-  const [generic, setGeneric]=useState("app");
-  useEffect(() => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          if (result['cod'] !== 200) {
-            setIsLoaded(false)
-          } else {
-            setIsLoaded(true);
-            setResults(result);
-            setGeneric("app "+result.weather[0].main);
-          }
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      )
-  }, [city])
+	const [city, setCity] = useState('New York City');
+	const [cWeatherUrl, setCWeatherUrl] = useState(
+		'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + process.env.REACT_APP_APIKEY,
+	);
+	const [forecastUrl, setForecastUrl] = useState(
+		'https://api.openweathermap.org/data/2.5/forecast?q=' +
+			city +
+			'&units=metric&appid=' +
+			process.env.REACT_APP_APIKEY,
+	);
+	const [forecastDataGrouped, setForecastDataGrouped] = useState(null);
+	const [activeWeatherCard, setActiveWeatherCard] = useState(0);
+	const formUrl = (city) => {
+		setCWeatherUrl(
+			'https://api.openweathermap.org/data/2.5/weather?q=' +
+				city +
+				'&units=metric&appid=' +
+				process.env.REACT_APP_APIKEY,
+		);
+		setForecastUrl(
+			'https://api.openweathermap.org/data/2.5/forecast?q=' +
+				city +
+				'&units=metric&appid=' +
+				process.env.REACT_APP_APIKEY,
+		);
+	};
+	let { data: cWeatherData, error: cWeatherError, loading: cWeatherLoading } = useFetch(cWeatherUrl);
+	let { data: forecastData, error: forecastError, loading: forecastLoading } = useFetch(forecastUrl);
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else {
-    return <div className={[generic]}>
-      <main>
-      <img className="logo" src={logo} alt="MLH Prep Logo"></img>
-      <div>
-        <h2>Enter a city below 👇</h2>
-        <input
-          type="text"
-          value={city}
-          onChange={event => {
-            setCity(event.target.value);
-            }} />
-        <div className="Results">
-          {!isLoaded && <h2>Loading...</h2>}
-          {console.log(results)}
-          {isLoaded && results && <>
-            <h3>{results.weather[0].main}</h3>
-            <p>Feels like {results.main.feels_like}°C</p>
-            <i><p>{results.name}, {results.sys.country}</p></i>
-          </>}
-        </div>
-      </div>
-      <p className="required-things-heading">Things you should carry in your bag 🎒</p>
-      {isLoaded && results && <Box weather={results.weather[0].main}/>}
+	useEffect(() => {
+		if (city !== '') {
+			formUrl(city);
+		}
+	}, [city]);
 
-     
-      </main>
-      
-    </div>
-  }
-}
+	useEffect(() => {
+		const groupDataByDate = () => {
+			const groups = forecastData.list.reduce((groups, item) => {
+				const date = item.dt_txt.split(' ')[0];
+				const group = groups[date] || [];
+				group.push(item);
+				groups[date] = group;
+				return groups;
+			}, {});
+			const groupArrays = Object.keys(groups).map((date) => {
+				return {
+					date,
+					data: groups[date],
+				};
+			});
+			setForecastDataGrouped(groupArrays);
+		};
+		//only when the foreCastData is not empty
+		if (forecastData) {
+			groupDataByDate();
+		}
+	}, [forecastData]);
+
+	if (cWeatherError) {
+		return <div>Error: {cWeatherError.message}</div>;
+	} else {
+		return (
+			<>
+				<img className="logo" src={logo} alt="MLH Prep Logo"></img>
+				<div>
+					<h2>Enter a city below 👇</h2>
+					<input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
+					<div className="Results">
+						{cWeatherLoading && <h2>Loading...</h2>}
+						{!cWeatherLoading && cWeatherData && (
+							<>
+								<h3>{cWeatherData.weather[0].main}</h3>
+								<p>Feels like {cWeatherData.main.feels_like}°C</p>
+								<i>
+									<p>
+										{cWeatherData.name}, {cWeatherData.sys.country}
+									</p>
+								</i>
+							</>
+						)}
+					</div>
+
+					{forecastError ? (
+						<div>Error: {forecastError.message}</div>
+					) : (
+						<div className="DailyForecast">
+							{forecastLoading && <h2>Loading...</h2>}
+							{!forecastLoading && (
+								<DailyForecast
+									data={forecastDataGrouped}
+									setActiveWeatherCard={setActiveWeatherCard}
+									activeWeatherCard={activeWeatherCard}
+								/>
+							)}
+							{!forecastLoading && forecastDataGrouped != null && (
+								<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} />
+							)}
+						</div>
+					)}
+				</div>
+			</>
+		);
+	
+}}
 
 export default App;
