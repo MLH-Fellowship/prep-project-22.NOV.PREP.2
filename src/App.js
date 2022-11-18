@@ -35,6 +35,19 @@ function App() {
 	let { data: cWeatherData, error: cWeatherError, loading: cWeatherLoading } = useFetch(cWeatherUrl);
 	let { data: forecastData, error: forecastError, loading: forecastLoading } = useFetch(forecastUrl);
 
+	let weatherConditions = new Map([
+		['Thunderstorm', '0tvTKWuNraoLD79QYNQqjs'],
+		['Drizzle', '2ehQYxdKgrAjAmRtGs0Lvo'],
+		['Rain', '3r82Jvzw3SSGKKiKf3dXMM'],
+		['Snow', '3CilYZJlRy9Ezo90iDWjh9'],
+		['Clouds', '5LkCNhKwuKa1niaXnFuzVf'],
+		['Clear', '3dbanqXCAZtvBR0Fb2WzJE'],
+		['Mist', '0GRb68fTXCzZ2lIQ08EKn0'],
+		['Fog', '6pBgfrL2GNWzuFijJL1Dm3'],
+		['Rest', '0BcF3XeAFrAkhdQGiVAoPA'],
+	]);
+	let weatherCondition = '';
+
 	useEffect(() => {
 		if (city !== '') {
 			formUrl(city);
@@ -77,7 +90,7 @@ function App() {
 						{cWeatherLoading && <h2>Loading...</h2>}
 						{!cWeatherLoading && cWeatherData && (
 							<>
-								<h3>{cWeatherData.weather[0].main}</h3>
+								<h3>{(weatherCondition = cWeatherData.weather[0].main)}</h3>
 								<p>Feels like {cWeatherData.main.feels_like}°C</p>
 								<i>
 									<p>
@@ -87,6 +100,20 @@ function App() {
 							</>
 						)}
 					</div>
+
+					<div
+						style={{ padding: 10 }}
+						dangerouslySetInnerHTML={{
+							__html:
+								'<iframe style="border-radius:12px"\n' +
+								'                src="https://open.spotify.com/embed/playlist/' +
+								weatherConditions.get(weatherConditions.has(weatherCondition) ? weatherCondition : 'Rest') +
+								'?utm_source=generator"\n' +
+								'                width="83%" height="280" frameBorder="0" allowFullScreen=""\n' +
+								'                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"\n' +
+								'                loading="lazy"></iframe>',
+						}}
+					/>
 
 					{forecastError ? (
 						<div>Error: {forecastError.message}</div>
