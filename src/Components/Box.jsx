@@ -1,6 +1,6 @@
 import React from 'react';
-import '../../assets/css/Box.css';
-import requiredThings from './Js/requiredThings';
+import '../assets/css/Box.css';
+import getRequiredMap from './RequiredThings';
 
 function Item(props) {
 	return (
@@ -14,8 +14,8 @@ function Item(props) {
 function Box(props) {
 	return (
 		<div className="flex required-things-box">
-			{Object.keys(requiredThings[props.weather]).map((item) => {
-				return <Item img={requiredThings[props.weather][item]} name={item} />;
+			{Object.keys(getRequiredMap[props.itemType][props.weather]).map((item) => {
+				return <Item img={getRequiredMap[props.itemType][props.weather][item]} name={item} />;
 			})}
 		</div>
 	);

@@ -1,101 +1,80 @@
-import Raincoat from '../../assets/img/Raincoat.png';
-import Flashlight from '../../assets/img/Flashlight.png';
-import WaterproofBoots from '../../assets/img/WaterproofBoots.png';
-import Umbrella from '../../assets/img/Umbrella.png';
-import Googles from '../../assets/img/Goggles.png';
-import Gloves from '../../assets/img/Gloves.png';
-import Jacket from '../../assets/img/Jacket.png';
-import Watch from '../../assets/img/Watch.png';
-import Mask from '../../assets/img/Mask.png';
-import Sunscreen from '../../assets/img/Sunscreen.png';
-import Sunglasses from '../../assets/img/Sunglasses.png';
-import Sanitation from '../../assets/img/Sanitation.png';
-import MosquitoRepellent from '../../assets/img/MosquitoRepellent.png';
-import Cap from '../../assets/img/Cap.png';
-import SandScarf from '../../assets/img/Scarf.png';
-import Wipes from '../../assets/img/Wipes.jpg';
+import * as icons from '../../assets/img/requiredThings/icons.js';
 
 const requiredThings = {
 	Thunderstorm: {
-		Raincoat: Raincoat,
-		Flashlight: Flashlight,
-		'Waterproof Boots': WaterproofBoots,
+		Raincoat: icons.raincoat,
+		Flashlight: icons.flashlight,
+		'Waterproof Boots': icons.waterproofBoots,
 	},
 	Drizzle: {
-		Raincoat: Raincoat,
-		'Waterproof Boots': WaterproofBoots,
-		Umbrella: Umbrella,
+		Raincoat: icons.raincoat,
+		'Waterproof Boots': icons.waterproofBoots,
+		Umbrella: icons.umbrella,
 	},
 	Rain: {
-		Raincoat: Raincoat,
-		'Waterproof Boots': WaterproofBoots,
-		Umbrella: Umbrella,
+		Raincoat: icons.raincoat,
+		'Waterproof Boots': icons.waterproofBoots,
+		Umbrella: icons.umbrella,
 	},
 	Snow: {
-		Googles: Googles,
-		Gloves: Gloves,
-		Jacket: Jacket,
+		Googles: icons.googles,
+		Gloves: icons.gloves,
+		Jacket: icons.jacket,
 	},
 	Mist: {
-		Watch: Watch,
-		Googles: Googles,
-		Mask: Mask,
+		Watch: icons.watch,
+		Googles: icons.googles,
+		Mask: icons.mask,
 	},
 	Smoke: {
-		Watch: Watch,
-		Googles: Googles,
-		Mask: Mask,
+		Watch: icons.watch,
+		Googles: icons.googles,
+		Mask: icons.mask,
 	},
 	Haze: {
-		Watch: Watch,
-		Googles: Googles,
-		Mask: Mask,
+		Watch: icons.watch,
+		Googles: icons.googles,
+		Mask: icons.mask,
 	},
 	Dust: {
-		'Face Wipes': Wipes,
-		Googles: Googles,
-		Mask: Mask,
+		'Face Wipes': icons.wipes,
+		Googles: icons.googles,
+		Mask: icons.mask,
 	},
 	Fog: {
-		Watch: Watch,
-		Googles: Googles,
-		Mask: Mask,
+		Watch: icons.watch,
+		Googles: icons.googles,
+		Mask: icons.mask,
 	},
 	Sand: {
-		Mask: Mask,
-		Googles: Googles,
-		'Sand Scarf': SandScarf,
+		Mask: icons.mask,
+		Googles: icons.googles,
+		'Sand Scarf': icons.sandScarf,
 	},
 	Ash: {
-		'Face Wipes': Wipes,
-		Googles: Googles,
-		Mask: Mask,
+		'Face Wipes': icons.wipes,
+		Googles: icons.googles,
+		Mask: icons.mask,
 	},
 	Squall: {
-		Watch: Watch,
-		Googles: Googles,
-		Mask: Mask,
+		Watch: icons.watch,
+		Googles: icons.googles,
+		Mask: icons.mask,
 	},
 	Tornado: {
-		Sanitation: Sanitation,
-		Flashlight: Flashlight,
-		Googles: Googles,
+		Sanitation: icons.sanitation,
+		Flashlight: icons.flashlight,
+		Googles: icons.googles,
 	},
 	Clear: {
-		Sunglasses: Sunglasses,
-		BaseballCap: Cap,
-		Sunscreen: Sunscreen,
+		Sunglasses: icons.sunglasses,
+		BaseballCap: icons.cap,
+		Sunscreen: icons.sunscreen,
 	},
 	Clouds: {
-		BaseballCap: Cap,
-		Watch: Watch,
-		'Mosquito Repellent': MosquitoRepellent,
-	},
-
-	Sunny: {
-		Sunglasses: Sunglasses,
-		BaseballCap: Cap,
-		Sunscreen: Sunscreen,
+		BaseballCap: icons.cap,
+		Watch: icons.watch,
+		'Mosquito Repellent': icons.mosquitoRepellent,
 	},
 };
 

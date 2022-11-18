@@ -4,6 +4,7 @@ import logo from './mlh-prep.png';
 import { useFetch } from './Hooks/useFetch';
 import DailyForecast from './Components/DailyForecast';
 import HourlyForecast from './Components/HourlyForecast';
+import Box from './Components/Box';
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -132,6 +133,10 @@ function App() {
 							)}
 						</div>
 					)}
+					<p className="required-things-heading">Things you should carry in your bag 🎒</p>
+					{!cWeatherLoading && cWeatherData && <Box itemType="things" weather={cWeatherData.weather[0].main} />}
+					<p className="required-things-heading">Things you eat 😋</p>
+					{!cWeatherLoading && cWeatherData && <Box itemType="food" weather={cWeatherData.weather[0].main} />}
 				</div>
 			</>
 		);
