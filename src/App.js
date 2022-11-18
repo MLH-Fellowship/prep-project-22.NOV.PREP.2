@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import './App.css';
 import logo from './mlh-prep.png';
-import { useFetch } from './Hooks/useFetch';
-import DailyForecast from './Components/DailyForecast';
-import HourlyForecast from './Components/HourlyForecast';
+import { useFetch } from './hooks/useFetch';
+import DailyForecast from './components/DailyForecast';
+import HourlyForecast from './components/HourlyForecast';
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -108,7 +108,7 @@ function App() {
 				</div>
 			</>
 		);
-	
-}}
+	}
+}
 
 export default App;

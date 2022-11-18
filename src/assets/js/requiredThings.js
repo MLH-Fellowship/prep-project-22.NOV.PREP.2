@@ -1,22 +1,19 @@
-import Raincoat from '../assets/requiredThings/Raincoat.png';
-import Flashlight from '../assets/requiredThings/Flashlight.png';
-import WaterproofBoots from '../assets/requiredThings/WaterproofBoots.png';
-import Umbrella from '../assets/requiredThings/Umbrella.png';
-import Googles from '../assets/requiredThings/Goggles.png';
-import Gloves from '../assets/requiredThings/Gloves.png';
-import Jacket from '../assets/requiredThings/Jacket.png';
-import Watch from '../assets/requiredThings/Watch.png';
-import Mask from '../assets/requiredThings/Mask.png';
-import Sunscreen from '../assets/requiredThings/Sunscreen.png';
-import Sunglasses from '../assets/requiredThings/Sunglasses.png';
-import Sanitation from '../assets/requiredThings/Sanitation.png';
-import MosquitoRepellent from '../assets/requiredThings/MosquitoRepellent.png';
-import Cap from '../assets/requiredThings/Cap.png';
-import SandScarf from '../assets/requiredThings/Scarf.png';
-import Wipes from '../assets/requiredThings/Wipes.jpg';
-
-
-
+import Raincoat from '../img/requiredThings/Raincoat.png';
+import Flashlight from '../img/requiredThings/Flashlight.png';
+import WaterproofBoots from '../img/requiredThings/WaterproofBoots.png';
+import Umbrella from '../img/requiredThings/Umbrella.png';
+import Googles from '../img/requiredThings/Goggles.png';
+import Gloves from '../img/requiredThings/Gloves.png';
+import Jacket from '../img/requiredThings/Jacket.png';
+import Watch from '../img/requiredThings/Watch.png';
+import Mask from '../img/requiredThings/Mask.png';
+import Sunscreen from '../img/requiredThings/Sunscreen.png';
+import Sunglasses from '../img/requiredThings/Sunglasses.png';
+import Sanitation from '../img/requiredThings/Sanitation.png';
+import MosquitoRepellent from '../img/requiredThings/MosquitoRepellent.png';
+import Cap from '../img/requiredThings/Cap.png';
+import SandScarf from '../img/requiredThings/Scarf.png';
+import Wipes from '../img/requiredThings/Wipes.jpg';
 
 const requiredThings = {
 	Thunderstorm: {
@@ -94,7 +91,7 @@ const requiredThings = {
 		Watch: Watch,
 		'Mosquito Repellent': MosquitoRepellent,
 	},
-	
+
 	Sunny: {
 		Sunglasses: Sunglasses,
 		BaseballCap: Cap,
