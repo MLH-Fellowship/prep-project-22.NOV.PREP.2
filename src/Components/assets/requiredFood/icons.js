@@ -14,6 +14,8 @@ import spaghetti from './spaghetti.png';
 import steak from './steak.png';
 import waffles from './waffles.png';
 import cannedFood from './cannedfood.png';
+import hotChocolate from './hotchocolate.png';
+import frappe from './frappe.png';
 
 export {
 	apple,
@@ -32,4 +34,6 @@ export {
 	waffles,
 	cracker,
 	cannedFood,
+	hotChocolate,
+	frappe,
 };

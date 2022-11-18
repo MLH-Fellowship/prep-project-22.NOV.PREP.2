@@ -9,17 +9,17 @@ const requiredFood = {
 	Drizzle: {
 		Chocoloate: icons.chocolate,
 		Pancake: icons.pancake,
-		Coffee: icons.coffee,
+		Banana: icons.banana,
 	},
 	Rain: {
 		Chocoloate: icons.chocolate,
-		Coffee: icons.coffee,
+		'Hot chocoloate': icons.hotChocolate,
 		Steak: icons.steak,
 	},
 	Snow: {
 		Steak: icons.steak,
 		Chocoloate: icons.chocolate,
-		Coffee: icons.coffee,
+		'Hot chocoloate': icons.hotChocolate,
 	},
 	Mist: {
 		Burger: icons.burger,
@@ -33,18 +33,18 @@ const requiredFood = {
 	},
 	Haze: {
 		Crackers: icons.cracker,
-		Coffee: icons.coffee,
+		Frappe: icons.frappe,
 		'Canned food': icons.cannedFood,
 	},
 	Dust: {
-		Coffee: icons.coffee,
+		Frappe: icons.frappe,
 		Crackers: icons.cracker,
 		'Canned food': icons.cannedFood,
 	},
 	Fog: {
 		Burger: icons.burger,
 		Waffles: icons.waffles,
-		Coffee: icons.coffee,
+		Apple: icons.apple,
 	},
 	Sand: {
 		Smoothie: icons.smoothie,
@@ -54,11 +54,11 @@ const requiredFood = {
 	Ash: {
 		'Canned food': icons.cannedFood,
 		Crackers: icons.cracker,
-		Coffee: icons.coffee,
+		Frappe: icons.frappe,
 	},
 	Squall: {
 		Waffles: icons.waffles,
-		Coffee: icons.coffee,
+		Smoothie: icons.smoothie,
 		pancake: icons.pancake,
 	},
 	Tornado: {
@@ -67,19 +67,14 @@ const requiredFood = {
 		Coffee: icons.coffee,
 	},
 	Clear: {
-		Apple: icons.apple,
-		Coffee: icons.coffee,
-		Banana: icons.banana,
+		Lemonade: icons.lemonade,
+		'Ice cream': icons.icecream,
+		Waffles: icons.waffles,
 	},
 	Clouds: {
 		Coffee: icons.coffee,
 		Chocoloate: icons.chocolate,
 		Pizza: icons.pizza,
-	},
-	Sunny: {
-		Lemonade: icons.lemonade,
-		'Ice cream': icons.icecream,
-		Waffles: icons.waffles,
 	},
 };
 
