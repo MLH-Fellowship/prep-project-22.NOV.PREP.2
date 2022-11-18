@@ -1,5 +1,5 @@
 import React from 'react';
-import './index.css';
+import '../../assets/css/DailyForecast.css';
 import dateFormat from 'dateformat';
 
 const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard }) => {
