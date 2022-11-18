@@ -1,4 +1,4 @@
-import './index.css';
+import "../../assets/css/MainWeatherCard"
 import dateFormat from 'dateformat';
 const MainWeatherCard = ({ data }) => {
 	return (
