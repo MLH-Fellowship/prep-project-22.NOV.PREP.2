@@ -1,65 +1,74 @@
-*{
-    margin: 0px; 
-    padding: 0px;
+* {
+	margin: 0px;
+	padding: 0px;
 }
-h4, h5, h3{
-    padding: 2px; 
+h4,
+h5,
+h3 {
+	padding: 2px;
 }
 .container{
-    background-color: white ;
-    width: 40%;
-    margin-left: 10px;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    margin: 20px 10px;
-    padding: 20px; 
+    margin-left:135px;
 }
-.container > div:last-child{
-    display: grid;
-    grid-template-columns: auto auto;
-    row-gap: 5%;
-    grid-template-rows: auto auto;
-    margin-top: 10px;
-}
-
-.container > div:first-child {
-    display: flex;
-    justify-content: space-between;
-    margin: 0 20px;
-}
-
-.container >div:last-child > div:first-child > div{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+.card {
+	background-color: white;
+	width: 40%;
+    box-sizing: border-box;
+    border-radius: 5px;
+	margin-left: 10px;
+	color: black;
+	display: flex;
+    padding: 10px; 
+	flex-direction: column;
+	margin: 20px 10px;
+ }
+.card> div:last-child {
+	display: grid;
+	grid-template-columns: auto auto;
+	row-gap: 5%;
+	grid-template-rows: auto auto;
+	margin-top: 10px;
 }
 
-.container >div:last-child > div:first-child{
-    border-right: 2px solid #133667;
-    height: fit-content;
+.card > div:first-child {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 20px;
 }
 
-
-.container > div:last-child >div:last-child {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto;
-  row-gap: 10px;
-  align-items: center;
-
+.card > div:last-child > div:first-child > div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-@media screen and (max-width: 480px) {
+.card > div:last-child > div:first-child {
+	border-right: 2px solid #133667;
+	height: fit-content;
+}
+
+.card > div:last-child > div:last-child {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto auto;
+	row-gap: 10px;
+	align-items: center;
+}
+
+@media screen and (max-width: 800px) {
     .container{
-        width: 90%;
+        margin-left: 0;
+        display: flex;
+        justify-content: center;
     }
-    .container >div:last-child > div:first-child{
-        border-right: none;
-    }
-    .container > div:last-child{
-        grid-template-columns: auto;
-        grid-template-rows: auto;
-    }
+	.card {
+		width: 90%;
+	}
+	.card > div:last-child > div:first-child {
+		border-right: none;
+	}
+	.card > div:last-child {
+		grid-template-columns: auto;
+		grid-template-rows: auto;
+	}
 }
