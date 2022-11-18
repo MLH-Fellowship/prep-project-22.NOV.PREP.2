@@ -6,10 +6,10 @@
 
 .graph div {
 	width: 50%;
-  }
+}
 
-  @media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) {
 	.graph div {
 		width: 100%;
-	  }
-  }
+	}
+}

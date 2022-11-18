@@ -7,22 +7,22 @@ h5,
 h3 {
 	padding: 2px;
 }
-.container{
-    margin-left:135px;
+.container {
+	margin-left: 135px;
 }
 .card {
 	background-color: white;
 	width: 40%;
-    box-sizing: border-box;
-    border-radius: 5px;
+	box-sizing: border-box;
+	border-radius: 5px;
 	margin-left: 10px;
 	color: black;
 	display: flex;
-    padding: 10px; 
+	padding: 10px;
 	flex-direction: column;
 	margin: 20px 10px;
- }
-.card> div:last-child {
+}
+.card > div:last-child {
 	display: grid;
 	grid-template-columns: auto auto;
 	row-gap: 5%;
@@ -56,11 +56,11 @@ h3 {
 }
 
 @media screen and (max-width: 800px) {
-    .container{
-        margin-left: 0;
-        display: flex;
-        justify-content: center;
-    }
+	.container {
+		margin-left: 0;
+		display: flex;
+		justify-content: center;
+	}
 	.card {
 		width: 90%;
 	}

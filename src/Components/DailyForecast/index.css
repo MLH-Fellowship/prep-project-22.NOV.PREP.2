@@ -1,8 +1,8 @@
-*{
+* {
 	margin: 0;
 	padding: 0;
 }
-.icon{
+.icon {
 	cursor: pointer;
 }
 
@@ -39,7 +39,6 @@
 	justify-content: space-around;
 }
 
-.weatherCard > div:last-child{
+.weatherCard > div:last-child {
 	margin-top: 10px;
 }
-
