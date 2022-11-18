@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import logo from './mlh-prep.png';
 import { useFetch } from './Hooks/useFetch';
 import DailyForecast from './Components/DailyForecast';
 import HourlyForecast from './Components/HourlyForecast';
+import Navbar from './Components/Navbar';
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -69,8 +69,8 @@ function App() {
 	} else {
 		return (
 			<>
-				<img className="logo" src={logo} alt="MLH Prep Logo"></img>
-				<div>
+			<Navbar />
+				<div style={{ marginTop: 150 }}>
 					<h2>Enter a city below 👇</h2>
 					<input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
 					<div className="Results">
