@@ -7,8 +7,9 @@ h5,
 h3 {
 	padding: 2px;
 }
-.container {
-	margin-left: 135px;
+.container{
+	display: flex;
+	justify-content: center;
 }
 .card {
 	background-color: white;
