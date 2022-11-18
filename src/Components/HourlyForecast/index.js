@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import dateFormat from 'dateformat';
-import './index.css';
+import '../../assets/css/HourlyForecast.css';
 import {
 	Chart as ChartJS,
 	CategoryScale,
