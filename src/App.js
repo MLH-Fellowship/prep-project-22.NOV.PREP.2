@@ -69,7 +69,7 @@ function App() {
 	} else {
 		return (
 			<>
-			<Navbar />
+				<Navbar />
 				<div style={{ marginTop: 150 }}>
 					<h2>Enter a city below 👇</h2>
 					<input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
