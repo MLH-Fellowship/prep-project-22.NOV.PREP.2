@@ -1,4 +1,4 @@
-import * as icons from '../assets/requiredFood/icons.js';
+import * as icons from '../../assets/img/requiredFood/icons.js';
 
 const requiredFood = {
 	Thunderstorm: {

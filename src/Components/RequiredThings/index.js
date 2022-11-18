@@ -1,9 +1,9 @@
 import requiredFood from './requiredFood';
 import requiredThings from './requiredThings';
 
-const requiredItem = {
+const getRequiredMap = {
 	food: requiredFood,
 	things: requiredThings,
 };
 
-export default requiredItem;
+export default getRequiredMap;

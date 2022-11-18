@@ -1,4 +1,4 @@
-import * as icons from '../assets/requiredThings/icons.js';
+import * as icons from '../../assets/img/requiredThings/icons.js';
 
 const requiredThings = {
 	Thunderstorm: {
@@ -75,11 +75,6 @@ const requiredThings = {
 		BaseballCap: icons.cap,
 		Watch: icons.watch,
 		'Mosquito Repellent': icons.mosquitoRepellent,
-	},
-	Sunny: {
-		Sunglasses: icons.sunglasses,
-		BaseballCap: icons.cap,
-		Sunscreen: icons.sunscreen,
 	},
 };
 
