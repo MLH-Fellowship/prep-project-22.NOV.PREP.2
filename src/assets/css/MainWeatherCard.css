@@ -57,11 +57,6 @@ h3 {
 }
 
 @media screen and (max-width: 800px) {
-	.container {
-		margin-left: 0;
-		display: flex;
-		justify-content: center;
-	}
 	.card {
 		width: 90%;
 	}
