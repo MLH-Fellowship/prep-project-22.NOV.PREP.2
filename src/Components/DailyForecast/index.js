@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './index.css';
+import '../../assets/css/DailyForecast.css';
 import dateFormat from 'dateformat';
 import { FcNext } from 'react-icons/fc';
 import { FcPrevious } from 'react-icons/fc';
