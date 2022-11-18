@@ -1,22 +1,19 @@
-import Raincoat from '../assets/requiredThings/Raincoat.png';
-import Flashlight from '../assets/requiredThings/Flashlight.png';
-import WaterproofBoots from '../assets/requiredThings/WaterproofBoots.png';
-import Umbrella from '../assets/requiredThings/Umbrella.png';
-import Googles from '../assets/requiredThings/Goggles.png';
-import Gloves from '../assets/requiredThings/Gloves.png';
-import Jacket from '../assets/requiredThings/Jacket.png';
-import Watch from '../assets/requiredThings/Watch.png';
-import Mask from '../assets/requiredThings/Mask.png';
-import Sunscreen from '../assets/requiredThings/Sunscreen.png';
-import Sunglasses from '../assets/requiredThings/Sunglasses.png';
-import Sanitation from '../assets/requiredThings/Sanitation.png';
-import MosquitoRepellent from '../assets/requiredThings/MosquitoRepellent.png';
-import Cap from '../assets/requiredThings/Cap.png';
-import SandScarf from '../assets/requiredThings/Scarf.png';
-import Wipes from '../assets/requiredThings/Wipes.jpg';
-
-
-
+import Raincoat from '../../assets/img/Raincoat.png';
+import Flashlight from '../../assets/img/Flashlight.png';
+import WaterproofBoots from '../../assets/img/WaterproofBoots.png';
+import Umbrella from '../../assets/img/Umbrella.png';
+import Googles from '../../assets/img/Goggles.png';
+import Gloves from '../../assets/img/Gloves.png';
+import Jacket from '../../assets/img/Jacket.png';
+import Watch from '../../assets/img/Watch.png';
+import Mask from '../../assets/img/Mask.png';
+import Sunscreen from '../../assets/img/Sunscreen.png';
+import Sunglasses from '../../assets/img/Sunglasses.png';
+import Sanitation from '../../assets/img/Sanitation.png';
+import MosquitoRepellent from '../../assets/img/MosquitoRepellent.png';
+import Cap from '../../assets/img/Cap.png';
+import SandScarf from '../../assets/img/Scarf.png';
+import Wipes from '../../assets/img/Wipes.jpg';
 
 const requiredThings = {
 	Thunderstorm: {
@@ -94,7 +91,7 @@ const requiredThings = {
 		Watch: Watch,
 		'Mosquito Repellent': MosquitoRepellent,
 	},
-	
+
 	Sunny: {
 		Sunglasses: Sunglasses,
 		BaseballCap: Cap,
