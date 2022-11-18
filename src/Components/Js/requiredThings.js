@@ -15,9 +15,6 @@ import Cap from '../assets/requiredThings/Cap.png';
 import SandScarf from '../assets/requiredThings/Scarf.png';
 import Wipes from '../assets/requiredThings/Wipes.jpg';
 
-
-
-
 const requiredThings = {
 	Thunderstorm: {
 		Raincoat: Raincoat,
@@ -94,7 +91,7 @@ const requiredThings = {
 		Watch: Watch,
 		'Mosquito Repellent': MosquitoRepellent,
 	},
-	
+
 	Sunny: {
 		Sunglasses: Sunglasses,
 		BaseballCap: Cap,
