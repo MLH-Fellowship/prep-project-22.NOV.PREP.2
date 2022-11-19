@@ -5,6 +5,7 @@ import { useFetch } from './Hooks/useFetch';
 import DailyForecast from './Components/DailyForecast';
 import HourlyForecast from './Components/HourlyForecast';
 import Box from './Components/Box';
+import Bookmark from './Components/Bookmark';
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -84,13 +85,15 @@ function App() {
 		return (
 			<>
 				<img className="logo" src={logo} alt="MLH Prep Logo"></img>
+				
 				<div>
 					<h2>Enter a city below 👇</h2>
 					<input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
 					<div className="Results">
 						{cWeatherLoading && <h2>Loading...</h2>}
 						{!cWeatherLoading && cWeatherData && (
-							<>
+							
+							<><Bookmark city={city} />
 								<h3>{(weatherCondition = cWeatherData.weather[0].main)}</h3>
 								<p>Feels like {cWeatherData.main.feels_like}°C</p>
 								<i>
