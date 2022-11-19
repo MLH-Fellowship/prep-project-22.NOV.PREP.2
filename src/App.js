@@ -4,8 +4,13 @@ import logo from './mlh-prep.png';
 import { useFetch } from './Hooks/useFetch';
 import DailyForecast from './Components/DailyForecast';
 import HourlyForecast from './Components/HourlyForecast';
+import MainWeatherCard from './Components/MainWeatherCard';
 import Box from './Components/Box';
+<<<<<<< HEAD
 import Bookmark from './Components/Bookmark';
+=======
+import PlaylistRecommendation from './Components/PlaylistRecommendation';
+>>>>>>> 2a24606a41087661bdb6a580408291c398ac4237
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -36,19 +41,6 @@ function App() {
 	};
 	let { data: cWeatherData, error: cWeatherError, loading: cWeatherLoading } = useFetch(cWeatherUrl);
 	let { data: forecastData, error: forecastError, loading: forecastLoading } = useFetch(forecastUrl);
-
-	let weatherConditions = new Map([
-		['Thunderstorm', '0tvTKWuNraoLD79QYNQqjs'],
-		['Drizzle', '2ehQYxdKgrAjAmRtGs0Lvo'],
-		['Rain', '3r82Jvzw3SSGKKiKf3dXMM'],
-		['Snow', '3CilYZJlRy9Ezo90iDWjh9'],
-		['Clouds', '5LkCNhKwuKa1niaXnFuzVf'],
-		['Clear', '3dbanqXCAZtvBR0Fb2WzJE'],
-		['Mist', '0GRb68fTXCzZ2lIQ08EKn0'],
-		['Fog', '6pBgfrL2GNWzuFijJL1Dm3'],
-		['Rest', '0BcF3XeAFrAkhdQGiVAoPA'],
-	]);
-	let weatherCondition = '';
 
 	useEffect(() => {
 		if (city !== '') {
@@ -89,8 +81,9 @@ function App() {
 				<div>
 					<h2>Enter a city below 👇</h2>
 					<input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
-					<div className="Results">
+					<div className="mainWeatherCard">
 						{cWeatherLoading && <h2>Loading...</h2>}
+<<<<<<< HEAD
 						{!cWeatherLoading && cWeatherData && (
 							
 							<><Bookmark city={city} />
@@ -103,22 +96,11 @@ function App() {
 								</i>
 							</>
 						)}
+=======
+						{!cWeatherLoading && cWeatherData && <MainWeatherCard data={cWeatherData} />}
+>>>>>>> 2a24606a41087661bdb6a580408291c398ac4237
 					</div>
-
-					<div
-						style={{ padding: 10 }}
-						dangerouslySetInnerHTML={{
-							__html:
-								'<iframe style="border-radius:12px"\n' +
-								'                src="https://open.spotify.com/embed/playlist/' +
-								weatherConditions.get(weatherConditions.has(weatherCondition) ? weatherCondition : 'Rest') +
-								'?utm_source=generator"\n' +
-								'                width="83%" height="280" frameBorder="0" allowFullScreen=""\n' +
-								'                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"\n' +
-								'                loading="lazy"></iframe>',
-						}}
-					/>
-
+					{!cWeatherLoading && cWeatherData && <PlaylistRecommendation weather={cWeatherData.weather[0].main} />}
 					{forecastError ? (
 						<div>Error: {forecastError.message}</div>
 					) : (
