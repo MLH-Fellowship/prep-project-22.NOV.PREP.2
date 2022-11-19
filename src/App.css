@@ -26,3 +26,16 @@ input {
 	align-items: center;
 	height: 100vh;
 }
+
+#mapAndWeathercard {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+}
+
+@media screen and (max-width: 800px) {
+	#mapAndWeathercard {
+		flex-direction: column;
+	}
+}

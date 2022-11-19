@@ -8,42 +8,40 @@ import MainWeatherCard from './Components/MainWeatherCard';
 import Box from './Components/Box';
 import MusicRecommendation from './Components/MusicRecomendation';
 import Loader from './Components/Loader';
+import MapContainer from './Components/Map';
 
 function App() {
 	const [city, setCity] = useState('New York City');
 	const [cWeatherUrl, setCWeatherUrl] = useState(
-		'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + process.env.REACT_APP_APIKEY,
+		`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`,
 	);
 	const [forecastUrl, setForecastUrl] = useState(
-		'https://api.openweathermap.org/data/2.5/forecast?q=' +
-			city +
-			'&units=metric&appid=' +
-			process.env.REACT_APP_APIKEY,
+		`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`,
 	);
 	const [forecastDataGrouped, setForecastDataGrouped] = useState(null);
 	const [activeWeatherCard, setActiveWeatherCard] = useState(0);
-	const formUrl = (city) => {
+	let timer,
+		timeoutVal = 1000;
+	const updateUrls = (city) => {
 		setCWeatherUrl(
-			'https://api.openweathermap.org/data/2.5/weather?q=' +
-				city +
-				'&units=metric&appid=' +
-				process.env.REACT_APP_APIKEY,
+			`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`,
 		);
 		setForecastUrl(
-			'https://api.openweathermap.org/data/2.5/forecast?q=' +
-				city +
-				'&units=metric&appid=' +
-				process.env.REACT_APP_APIKEY,
+			`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`,
 		);
 	};
 	let { data: cWeatherData, error: cWeatherError, loading: cWeatherLoading } = useFetch(cWeatherUrl);
 	let { data: forecastData, error: forecastError, loading: forecastLoading } = useFetch(forecastUrl);
 
-	useEffect(() => {
-		if (city !== '') {
-			formUrl(city);
-		}
-	}, [city]);
+	const handleKeyDown = (e) => {
+		window.clearTimeout(timer);
+	};
+	const handleKeyUp = (e) => {
+		window.clearTimeout(timer);
+		timer = window.setTimeout(() => {
+			updateUrls(city);
+		}, timeoutVal);
+	};
 
 	useEffect(() => {
 		const groupDataByDate = () => {
@@ -70,7 +68,7 @@ function App() {
 
 	if (cWeatherError || forecastError) {
 		return <div>Error: {cWeatherError.message || forecastError.message}</div>;
-	} else if (cWeatherLoading || forecastLoading) {
+	} else if (cWeatherLoading || forecastLoading || cWeatherData == null || forecastData == null) {
 		return (
 			<div id="loader">
 				<Loader />
@@ -82,41 +80,40 @@ function App() {
 				<img className="logo" src={logo} alt="MLH Prep Logo"></img>
 				<main>
 					<h2>Enter a city below 👇</h2>
-					<input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
-					<section className="mainWeatherCard">
-						{cWeatherLoading && <h2>Loading...</h2>}
-						{!cWeatherLoading && cWeatherData && <MainWeatherCard data={cWeatherData} />}
+					<input
+						type="text"
+						value={city}
+						onChange={(e) => setCity(e.currentTarget.value)}
+						onKeyDown={(e) => handleKeyDown(e)}
+						onKeyUp={(e) => handleKeyUp(e)}
+					/>
+					<section id="mapAndWeathercard">
+						<MainWeatherCard data={cWeatherData} />
+						<MapContainer setCWeatherUrl={setCWeatherUrl} setForecastUrl={setForecastUrl} coord={cWeatherData.coord} />
 					</section>
 
 					<section>
-						{cWeatherLoading && <h2>Loading...</h2>}
-						{!cWeatherLoading && cWeatherData && (
-							<MusicRecommendation weatherCondition={cWeatherData.weather[0].main} />
-						)}
+						<MusicRecommendation weatherCondition={cWeatherData.weather[0].main} />
 					</section>
 
 					<section>
-						{!forecastLoading && (
-							<DailyForecast
-								data={forecastDataGrouped}
-								setActiveWeatherCard={setActiveWeatherCard}
-								activeWeatherCard={activeWeatherCard}
-							/>
-						)}
+						<DailyForecast
+							data={forecastDataGrouped}
+							setActiveWeatherCard={setActiveWeatherCard}
+							activeWeatherCard={activeWeatherCard}
+						/>
 					</section>
 					<section>
-						{!forecastLoading && forecastDataGrouped != null && (
-							<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} />
-						)}
+						<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} />
 					</section>
 
 					<section>
 						<p className="required-things-heading">Things you should carry in your bag 🎒</p>
-						{!cWeatherLoading && cWeatherData && <Box itemType="things" weather={cWeatherData.weather[0].main} />}
+						<Box itemType="things" weather={cWeatherData.weather[0].main} />
 					</section>
 					<section>
 						<p className="required-things-heading">Things you eat 😋</p>
-						{!cWeatherLoading && cWeatherData && <Box itemType="food" weather={cWeatherData.weather[0].main} />}
+						<Box itemType="food" weather={cWeatherData.weather[0].main} />
 					</section>
 				</main>
 			</>
