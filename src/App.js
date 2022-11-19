@@ -6,6 +6,8 @@ import DailyForecast from './Components/DailyForecast';
 import HourlyForecast from './Components/HourlyForecast';
 import MainWeatherCard from './Components/MainWeatherCard';
 import Box from './Components/Box';
+import MusicRecommendation from './Components/MusicRecomendation';
+import Loader from './Components/Loader';
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -37,19 +39,6 @@ function App() {
 	let { data: cWeatherData, error: cWeatherError, loading: cWeatherLoading } = useFetch(cWeatherUrl);
 	let { data: forecastData, error: forecastError, loading: forecastLoading } = useFetch(forecastUrl);
 
-	let weatherConditions = new Map([
-		['Thunderstorm', '0tvTKWuNraoLD79QYNQqjs'],
-		['Drizzle', '2ehQYxdKgrAjAmRtGs0Lvo'],
-		['Rain', '3r82Jvzw3SSGKKiKf3dXMM'],
-		['Snow', '3CilYZJlRy9Ezo90iDWjh9'],
-		['Clouds', '5LkCNhKwuKa1niaXnFuzVf'],
-		['Clear', '3dbanqXCAZtvBR0Fb2WzJE'],
-		['Mist', '0GRb68fTXCzZ2lIQ08EKn0'],
-		['Fog', '6pBgfrL2GNWzuFijJL1Dm3'],
-		['Rest', '0BcF3XeAFrAkhdQGiVAoPA'],
-	]);
-	let weatherCondition = '';
-
 	useEffect(() => {
 		if (city !== '') {
 			formUrl(city);
@@ -79,56 +68,57 @@ function App() {
 		}
 	}, [forecastData]);
 
-	if (cWeatherError) {
-		return <div>Error: {cWeatherError.message}</div>;
+	if (cWeatherError || forecastError) {
+		return <div>Error: {cWeatherError.message || forecastError.message}</div>;
+	} else if (cWeatherLoading || forecastLoading) {
+		return (
+			<div id="loader">
+				<Loader />
+			</div>
+		);
 	} else {
 		return (
 			<>
 				<img className="logo" src={logo} alt="MLH Prep Logo"></img>
-				<div>
+				<main>
 					<h2>Enter a city below 👇</h2>
 					<input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
-					<div className="mainWeatherCard">
+					<section className="mainWeatherCard">
 						{cWeatherLoading && <h2>Loading...</h2>}
 						{!cWeatherLoading && cWeatherData && <MainWeatherCard data={cWeatherData} />}
-					</div>
+					</section>
 
-					<div
-						style={{ padding: 10 }}
-						dangerouslySetInnerHTML={{
-							__html:
-								'<iframe style="border-radius:12px"\n' +
-								'                src="https://open.spotify.com/embed/playlist/' +
-								weatherConditions.get(weatherConditions.has(weatherCondition) ? weatherCondition : 'Rest') +
-								'?utm_source=generator"\n' +
-								'                width="83%" height="280" frameBorder="0" allowFullScreen=""\n' +
-								'                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"\n' +
-								'                loading="lazy"></iframe>',
-						}}
-					/>
+					<section>
+						{cWeatherLoading && <h2>Loading...</h2>}
+						{!cWeatherLoading && cWeatherData && (
+							<MusicRecommendation weatherCondition={cWeatherData.weather[0].main} />
+						)}
+					</section>
 
-					{forecastError ? (
-						<div>Error: {forecastError.message}</div>
-					) : (
-						<div className="DailyForecast">
-							{forecastLoading && <h2>Loading...</h2>}
-							{!forecastLoading && (
-								<DailyForecast
-									data={forecastDataGrouped}
-									setActiveWeatherCard={setActiveWeatherCard}
-									activeWeatherCard={activeWeatherCard}
-								/>
-							)}
-							{!forecastLoading && forecastDataGrouped != null && (
-								<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} />
-							)}
-						</div>
-					)}
-					<p className="required-things-heading">Things you should carry in your bag 🎒</p>
-					{!cWeatherLoading && cWeatherData && <Box itemType="things" weather={cWeatherData.weather[0].main} />}
-					<p className="required-things-heading">Things you eat 😋</p>
-					{!cWeatherLoading && cWeatherData && <Box itemType="food" weather={cWeatherData.weather[0].main} />}
-				</div>
+					<section>
+						{!forecastLoading && (
+							<DailyForecast
+								data={forecastDataGrouped}
+								setActiveWeatherCard={setActiveWeatherCard}
+								activeWeatherCard={activeWeatherCard}
+							/>
+						)}
+					</section>
+					<section>
+						{!forecastLoading && forecastDataGrouped != null && (
+							<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} />
+						)}
+					</section>
+
+					<section>
+						<p className="required-things-heading">Things you should carry in your bag 🎒</p>
+						{!cWeatherLoading && cWeatherData && <Box itemType="things" weather={cWeatherData.weather[0].main} />}
+					</section>
+					<section>
+						<p className="required-things-heading">Things you eat 😋</p>
+						{!cWeatherLoading && cWeatherData && <Box itemType="food" weather={cWeatherData.weather[0].main} />}
+					</section>
+				</main>
 			</>
 		);
 	}
