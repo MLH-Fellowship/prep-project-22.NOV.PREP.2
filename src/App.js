@@ -84,7 +84,7 @@ function App() {
 		return (
 			<>
 				<Navbar />
-				<div style={{ marginTop: 150 }}>
+				<div className="main-div">
 					<h2>Enter a city below 👇</h2>
 					<input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
 					<div className="Results">
