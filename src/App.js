@@ -6,7 +6,11 @@ import DailyForecast from './Components/DailyForecast';
 import HourlyForecast from './Components/HourlyForecast';
 import MainWeatherCard from './Components/MainWeatherCard';
 import Box from './Components/Box';
+<<<<<<< HEAD
+import Bookmark from './Components/Bookmark';
+=======
 import PlaylistRecommendation from './Components/PlaylistRecommendation';
+>>>>>>> 2a24606a41087661bdb6a580408291c398ac4237
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -73,12 +77,28 @@ function App() {
 		return (
 			<>
 				<img className="logo" src={logo} alt="MLH Prep Logo"></img>
+				
 				<div>
 					<h2>Enter a city below 👇</h2>
 					<input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
 					<div className="mainWeatherCard">
 						{cWeatherLoading && <h2>Loading...</h2>}
+<<<<<<< HEAD
+						{!cWeatherLoading && cWeatherData && (
+							
+							<><Bookmark city={city} />
+								<h3>{(weatherCondition = cWeatherData.weather[0].main)}</h3>
+								<p>Feels like {cWeatherData.main.feels_like}°C</p>
+								<i>
+									<p>
+										{cWeatherData.name}, {cWeatherData.sys.country}
+									</p>
+								</i>
+							</>
+						)}
+=======
 						{!cWeatherLoading && cWeatherData && <MainWeatherCard data={cWeatherData} />}
+>>>>>>> 2a24606a41087661bdb6a580408291c398ac4237
 					</div>
 					{!cWeatherLoading && cWeatherData && <PlaylistRecommendation weather={cWeatherData.weather[0].main} />}
 					{forecastError ? (
