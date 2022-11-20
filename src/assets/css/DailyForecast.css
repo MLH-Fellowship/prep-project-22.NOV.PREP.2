@@ -1,0 +1,44 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.icon {
+	cursor: pointer;
+}
+
+.weatherCards {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.weatherCard {
+	padding-left: 10px;
+	padding-right: 10px;
+	background-color: white;
+	margin: 10px;
+	padding: 10px;
+	height: 20%;
+	color: black;
+	cursor: pointer;
+	border-radius: 5px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.weatherCard:hover {
+	background: linear-gradient(#133667, #0d9de3);
+	color: white;
+}
+.weatherCard.active {
+	background: linear-gradient(#133667, #0d9de3);
+	color: white;
+}
+
+.weatherCard > div {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.weatherCard > div:last-child {
+	margin-top: 10px;
+}
