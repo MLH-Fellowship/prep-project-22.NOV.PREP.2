@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import logo from './mlh-prep.png';
 import { useFetch } from './Hooks/useFetch';
 import DailyForecast from './Components/DailyForecast';
 import HourlyForecast from './Components/HourlyForecast';
+import Navbar from './Components/Navbar';
 import MainWeatherCard from './Components/MainWeatherCard';
 import Box from './Components/RequiredThings/Box';
-import MusicRecommendation from './Components/MusicRecomendation';
-import Loader from './Components/Loader';
+ import Loader from './Components/Loader';
 import MapContainer from './Components/Map';
+ import PlaylistRecommendation from './Components/PlaylistRecommendation';
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -77,8 +77,8 @@ function App() {
 	} else {
 		return (
 			<>
-				<img className="logo" src={logo} alt="MLH Prep Logo"></img>
-				<main>
+ 			   <Navbar />
+				<main  className="main-div">
 					<h2>Enter a city below 👇</h2>
 					<input
 						type="text"
@@ -93,7 +93,7 @@ function App() {
 					</section>
 
 					<section>
-						<MusicRecommendation weatherCondition={cWeatherData.weather[0].main} />
+						<PlaylistRecommendation weatherCondition={cWeatherData.weather[0].main} />
 					</section>
 
 					<section>
@@ -116,6 +116,7 @@ function App() {
 						<Box itemType="food" weather={cWeatherData.weather[0].main} />
 					</section>
 				</main>
+ 
 			</>
 		);
 	}
