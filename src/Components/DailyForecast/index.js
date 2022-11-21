@@ -15,7 +15,6 @@ const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard }) => {
 	};
 	const [startIndex, setStartIndex] = useState(0);
 	const [endIndex, setEndIndex] = useState(initialNOfitems());
-	console.log(endIndex);
 	const nextWeatherCard = () => {
 		if (endIndex < data.length - 1) {
 			setStartIndex((prev) => prev + 1);
@@ -43,7 +42,7 @@ const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard }) => {
 					.filter((element, index) => index >= startIndex && index <= endIndex)
 					.map((element, index) => (
 						<div
-							id={index}
+							key={index}
 							className={`weatherCard ${index === activeWeatherCard ? 'active' : 'deactive'} `}
 							onClick={() => setActiveWeatherCard(index)}
 						>
