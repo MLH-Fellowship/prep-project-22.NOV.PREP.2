@@ -1,6 +1,6 @@
 import React from 'react';
 import '../assets/css/Box.css';
-import getRequiredMap from './RequiredThings';
+import getRequiredMap from '.';
 
 function Item(props) {
 	return (

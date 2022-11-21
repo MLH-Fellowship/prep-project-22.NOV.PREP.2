@@ -5,7 +5,7 @@ import { useFetch } from './Hooks/useFetch';
 import DailyForecast from './Components/DailyForecast';
 import HourlyForecast from './Components/HourlyForecast';
 import MainWeatherCard from './Components/MainWeatherCard';
-import Box from './Components/Box';
+import Box from './Components/RequiredThings/Box';
 import MusicRecommendation from './Components/MusicRecomendation';
 import Loader from './Components/Loader';
 import MapContainer from './Components/Map';
