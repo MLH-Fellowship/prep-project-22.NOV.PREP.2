@@ -16,7 +16,6 @@ import { Line } from 'react-chartjs-2';
 const HourlyForecast = ({ data }) => {
 	const [temp, setTemp] = useState([]);
 	const [labels, setLabels] = useState([]);
-	console.log(labels);
 	useEffect(() => {
 		if (data) {
 			const [temp, hours] = data.data.reduce(
