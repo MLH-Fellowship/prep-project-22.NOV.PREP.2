@@ -89,7 +89,7 @@ function App() {
 					/>
 					<section id="mapAndWeathercard">
 						<MainWeatherCard data={cWeatherData} />
-						<MapContainer setCWeatherUrl={setCWeatherUrl} setForecastUrl={setForecastUrl} coord={cWeatherData.coord} />
+						<MapContainer coord={cWeatherData.coord} />
 					</section>
 
 					<section>
@@ -113,7 +113,7 @@ function App() {
 					</section>
 					<section>
 						<p className="required-things-heading">Songs to listen to 🎶</p>
-						{!cWeatherLoading && cWeatherData && <PlaylistRecommendation weather={cWeatherData.weather[0].main} />}
+						<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
 					</section>
 				</main>
 			</>

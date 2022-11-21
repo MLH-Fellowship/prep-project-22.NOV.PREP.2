@@ -12,7 +12,7 @@ const MainWeatherCard = ({ data }) => {
 				<div>
 					<div>
 						<div>
-							<img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} alt="weather icon" />
+							<img src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} alt="weather icon" />
 							<h3>{data.main.temp} °C</h3>
 						</div>
 						<h4>{data.weather[0].main}</h4>
