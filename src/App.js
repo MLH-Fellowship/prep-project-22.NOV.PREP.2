@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import './App.css';
 import logo from './mlh-prep.png';
 import { useFetch } from './Hooks/useFetch';
@@ -7,12 +7,11 @@ import HourlyForecast from './Components/HourlyForecast';
 import MainWeatherCard from './Components/MainWeatherCard';
 import Box from './Components/Box';
 import PlaylistRecommendation from './Components/PlaylistRecommendation';
-import Bookmark from "./Components/Bookmark"
-import { useBookmarkContext ,BookmarkProvider } from './helpers/context/bookmark';
-
+import Bookmark from './Components/Bookmark';
+import { useBookmarkContext, BookmarkProvider } from './helpers/context/bookmark';
 
 function App() {
-	
+	const [, toggleBookmarkModal] = useBookmarkContext;
 	const [city, setCity] = useState('New York City');
 	const [cWeatherUrl, setCWeatherUrl] = useState(
 		'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + process.env.REACT_APP_APIKEY,
@@ -81,18 +80,24 @@ function App() {
 				<div>
 					<h2>Enter a city below 👇</h2>
 					<BookmarkProvider>
-							<Bookmark city={city}></Bookmark>
+						<Bookmark city={city}></Bookmark>
 					</BookmarkProvider>
-					
+					<a
+						href="#"
+						onClick={(e) => {
+							e.preventDefault();
+							toggleBookmarkModal();
+						}}
+					>
+						<div className="nav-item">Bookmarks</div>
+					</a>
+
 					<input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
 					<div className="mainWeatherCard">
 						{cWeatherLoading && <h2>Loading...</h2>}
 						{!cWeatherLoading && cWeatherData && <MainWeatherCard data={cWeatherData} />}
-						
-						
-					
 					</div>
-					
+
 					{!cWeatherLoading && cWeatherData && <PlaylistRecommendation weather={cWeatherData.weather[0].main} />}
 					{forecastError ? (
 						<div>Error: {forecastError.message}</div>

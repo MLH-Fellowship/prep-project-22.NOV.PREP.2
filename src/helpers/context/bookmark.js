@@ -1,23 +1,21 @@
-import React, { createContext, useContext } from "react";
-import useToggle from "../../Hooks/useToggle";
+import React, { createContext, useContext } from 'react';
+import useToggle from '../../Hooks/useToggle';
 
-const BookmarkContext = createContext();
+const BookmarkContext = createContext({ toggleBookmarkModal: () => {} });
 
 const BookmarkProvider = ({ children }) => {
-  const [isOpen, toggleBookmarkModal] = useToggle(false);
+	const [isOpen, toggleBookmarkModal] = useToggle(false);
 
-  return (
-    <BookmarkContext.Provider value={[isOpen, toggleBookmarkModal]}>
-      {children}
-    </BookmarkContext.Provider>
-  );
+	return <BookmarkContext.Provider value={[isOpen, toggleBookmarkModal]}>{children}</BookmarkContext.Provider>;
 };
 
 const useBookmarkContext = () => {
-  const context = useContext(BookmarkContext);
+	const context = useContext(BookmarkContext);
 
-  
-  return context;
+	if (context === undefined) {
+		throw new Error('useBookmarkContext must be used within a BookmarkProvider');
+	}
+	return context;
 };
 
 export { BookmarkProvider, useBookmarkContext };
