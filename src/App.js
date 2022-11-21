@@ -93,10 +93,6 @@ function App() {
 					</section>
 
 					<section>
-						<PlaylistRecommendation weatherCondition={cWeatherData.weather[0].main} />
-					</section>
-
-					<section>
 						<DailyForecast
 							data={forecastDataGrouped}
 							setActiveWeatherCard={setActiveWeatherCard}
@@ -114,6 +110,10 @@ function App() {
 					<section>
 						<p className="required-things-heading">Things you eat 😋</p>
 						<Box itemType="food" weather={cWeatherData.weather[0].main} />
+					</section>
+					<section>
+						<p className="required-things-heading">Songs to listen to 🎶</p>
+						{!cWeatherLoading && cWeatherData && <PlaylistRecommendation weather={cWeatherData.weather[0].main} />}
 					</section>
 				</main>
 			</>
