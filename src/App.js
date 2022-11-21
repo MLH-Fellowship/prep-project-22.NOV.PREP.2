@@ -7,8 +7,12 @@ import HourlyForecast from './Components/HourlyForecast';
 import MainWeatherCard from './Components/MainWeatherCard';
 import Box from './Components/Box';
 import PlaylistRecommendation from './Components/PlaylistRecommendation';
+import Bookmark from "./Components/Bookmark"
+import { useBookmarkContext ,BookmarkProvider } from './helpers/context/bookmark';
+
 
 function App() {
+	
 	const [city, setCity] = useState('New York City');
 	const [cWeatherUrl, setCWeatherUrl] = useState(
 		'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + process.env.REACT_APP_APIKEY,
@@ -35,6 +39,7 @@ function App() {
 				process.env.REACT_APP_APIKEY,
 		);
 	};
+
 	let { data: cWeatherData, error: cWeatherError, loading: cWeatherLoading } = useFetch(cWeatherUrl);
 	let { data: forecastData, error: forecastError, loading: forecastLoading } = useFetch(forecastUrl);
 
@@ -75,11 +80,19 @@ function App() {
 				<img className="logo" src={logo} alt="MLH Prep Logo"></img>
 				<div>
 					<h2>Enter a city below 👇</h2>
+					<BookmarkProvider>
+							<Bookmark city={city}></Bookmark>
+					</BookmarkProvider>
+					
 					<input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
 					<div className="mainWeatherCard">
 						{cWeatherLoading && <h2>Loading...</h2>}
 						{!cWeatherLoading && cWeatherData && <MainWeatherCard data={cWeatherData} />}
+						
+						
+					
 					</div>
+					
 					{!cWeatherLoading && cWeatherData && <PlaylistRecommendation weather={cWeatherData.weather[0].main} />}
 					{forecastError ? (
 						<div>Error: {forecastError.message}</div>
