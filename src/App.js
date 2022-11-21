@@ -33,10 +33,10 @@ function App() {
 	let { data: cWeatherData, error: cWeatherError, loading: cWeatherLoading } = useFetch(cWeatherUrl);
 	let { data: forecastData, error: forecastError, loading: forecastLoading } = useFetch(forecastUrl);
 
-	const handleKeyDown = (e) => {
+	const handleKeyDown = () => {
 		window.clearTimeout(timer);
 	};
-	const handleKeyUp = (e) => {
+	const handleKeyUp = () => {
 		window.clearTimeout(timer);
 		timer = window.setTimeout(() => {
 			updateUrls(city);
@@ -84,8 +84,8 @@ function App() {
 						type="text"
 						value={city}
 						onChange={(e) => setCity(e.currentTarget.value)}
-						onKeyDown={(e) => handleKeyDown(e)}
-						onKeyUp={(e) => handleKeyUp(e)}
+						onKeyDown={() => handleKeyDown()}
+						onKeyUp={() => handleKeyUp()}
 					/>
 					<section id="mapAndWeathercard">
 						<MainWeatherCard data={cWeatherData} />
