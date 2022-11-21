@@ -21,6 +21,24 @@ function App() {
 	);
 	const [forecastDataGrouped, setForecastDataGrouped] = useState(null);
 	const [activeWeatherCard, setActiveWeatherCard] = useState(0);
+
+	const findUserLocation = (position) => {
+		const latitude = position.coords.latitude,
+			longitude = position.coords.longitude;
+		fetch(
+			'https://api.openweathermap.org/geo/1.0/reverse?lat=' +
+				latitude +
+				'&lon=' +
+				longitude +
+				'&limit=5&appid=' +
+				process.env.REACT_APP_APIKEY,
+		)
+			.then((res) => res.json())
+			.then((result) => {
+				setCity(result[0].name);
+			});
+	};
+
 	const formUrl = (city) => {
 		setCWeatherUrl(
 			'https://api.openweathermap.org/data/2.5/weather?q=' +
@@ -43,6 +61,14 @@ function App() {
 			formUrl(city);
 		}
 	}, [city]);
+
+	useEffect(() => {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(findUserLocation);
+		} else {
+			alert('Geolocation is not supported by this browser.');
+		}
+	}, []);
 
 	useEffect(() => {
 		const groupDataByDate = () => {
