@@ -89,7 +89,7 @@ function App() {
 					/>
 					<section id="mapAndWeathercard">
 						<MainWeatherCard data={cWeatherData} />
-						<MapContainer coord={cWeatherData.coord} />
+						<MapContainer setCWeatherUrl={setCWeatherUrl} setForecastUrl={setForecastUrl} coord={cWeatherData.coord} />
 					</section>
 
 					<section>
