@@ -11,7 +11,6 @@ import Bookmark from './Components/Bookmark';
 import { useBookmarkContext, BookmarkProvider } from './helpers/context/bookmark';
 
 function App() {
-	const [, toggleBookmarkModal] = useBookmarkContext;
 	const [city, setCity] = useState('New York City');
 	const [cWeatherUrl, setCWeatherUrl] = useState(
 		'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=metric&appid=' + process.env.REACT_APP_APIKEY,
@@ -82,15 +81,6 @@ function App() {
 					<BookmarkProvider>
 						<Bookmark city={city}></Bookmark>
 					</BookmarkProvider>
-					<a
-						href="#"
-						onClick={(e) => {
-							e.preventDefault();
-							toggleBookmarkModal();
-						}}
-					>
-						<div className="nav-item">Bookmarks</div>
-					</a>
 
 					<input type="text" value={city} onChange={(event) => setCity(event.target.value)} />
 					<div className="mainWeatherCard">

@@ -8,20 +8,17 @@ h3 {
 	padding: 2px;
 }
 .container {
-	display: flex;
-	justify-content: center;
+	width: 40%;
 }
 .card {
 	background-color: white;
-	width: 40%;
 	box-sizing: border-box;
 	border-radius: 5px;
-	margin-left: 10px;
 	color: black;
 	display: flex;
 	padding: 10px;
 	flex-direction: column;
-	margin: 20px 10px;
+	margin: 20px 20px;
 }
 .card > div:last-child {
 	display: grid;
@@ -59,6 +56,13 @@ h3 {
 @media screen and (max-width: 800px) {
 	.card {
 		width: 90%;
+	}
+	.container {
+		display: flex;
+		justify-content: center;
+		align-content: center;
+		width: 90%;
+		margin: 20px 0;
 	}
 	.card > div:last-child > div:first-child {
 		border-right: none;
