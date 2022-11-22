@@ -49,7 +49,7 @@ const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard, changeUn
 							<h4>{formatDate(element.date)}</h4>
 							<div>
 								<img
-									src={`http://openweathermap.org/img/wn/${element.data[0]?.weather[0].icon}@2x.png`}
+									src={`https://openweathermap.org/img/wn/${element.data[0]?.weather[0].icon}@2x.png`}
 									alt="weather icon"
 								/>
 								<h4>
