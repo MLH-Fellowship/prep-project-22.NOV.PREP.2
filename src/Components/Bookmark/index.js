@@ -23,7 +23,7 @@ const Bookmark = ({ city }) => {
 
 	const handleBookmarkLocation = (e) => {
 		const newLocation = {
-			name: city?.name,
+			name: city,
 		};
 
 		if (isLocationBookmarked(newLocation.name)) {
@@ -57,6 +57,8 @@ const Bookmark = ({ city }) => {
 		const result = bookmarkedLocations && bookmarkedLocations.length ? bookmarkedLocations : [];
 
 		localStorage.setItem('BookmarkedLocations', JSON.stringify([...result, location]));
+		console.log(location);
+		console.log(result);
 	};
 
 	const removeLocationFromBookmark = (locationName) => {

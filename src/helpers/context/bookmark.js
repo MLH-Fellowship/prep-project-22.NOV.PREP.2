@@ -1,7 +1,7 @@
 import React, { createContext, useContext } from 'react';
 import useToggle from '../../Hooks/useToggle';
 
-const BookmarkContext = createContext({ toggleBookmarkModal: () => {} });
+const BookmarkContext = createContext('default');
 
 const BookmarkProvider = ({ children }) => {
 	const [isOpen, toggleBookmarkModal] = useToggle(false);
