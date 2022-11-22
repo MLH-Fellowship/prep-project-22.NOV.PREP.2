@@ -13,7 +13,7 @@ import {
 } from 'chart.js';
 
 import { Line } from 'react-chartjs-2';
-const HourlyForecast = ({ data }) => {
+const HourlyForecast = ({ data, changeUnit }) => {
 	const [temp, setTemp] = useState([]);
 	const [labels, setLabels] = useState([]);
 	useEffect(() => {
@@ -48,7 +48,7 @@ const HourlyForecast = ({ data }) => {
 				title: {
 					display: true,
 					color: 'white',
-					text: 'Temperature (ºC)',
+					text: `Temperature °${changeUnit == 'metric' ? 'C' : 'F'}`,
 				},
 				grid: {
 					borderColor: 'white',

@@ -3,7 +3,7 @@ import '../../assets/css/DailyForecast.css';
 import dateFormat from 'dateformat';
 import { FcNext } from 'react-icons/fc';
 import { FcPrevious } from 'react-icons/fc';
-const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard }) => {
+const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard, changeUnit }) => {
 	const initialNOfitems = () => {
 		if (window.innerWidth < 450) {
 			return 1;
@@ -52,7 +52,9 @@ const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard }) => {
 									src={`https://openweathermap.org/img/wn/${element.data[0]?.weather[0].icon}@2x.png`}
 									alt="weather icon"
 								/>
-								<h4>{element.data[0]?.main.temp} &deg;C</h4>
+								<h4>
+									{element.data[0]?.main.temp} &deg; {changeUnit == 'metric' ? 'C' : 'F'}
+								</h4>
 							</div>
 							<p>{element.data[0]?.weather[0].main}</p>
 							<div>

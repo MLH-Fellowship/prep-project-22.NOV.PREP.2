@@ -12,22 +12,24 @@ import PlaylistRecommendation from './Components/PlaylistRecommendation';
 
 function App() {
 	const [city, setCity] = useState('New York City');
+	const [degree, setDegree] = useState('metric');
+
 	const [cWeatherUrl, setCWeatherUrl] = useState(
-		`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`,
+		`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${degree}&appid=${process.env.REACT_APP_APIKEY}`,
 	);
 	const [forecastUrl, setForecastUrl] = useState(
-		`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`,
+		`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${degree}&appid=${process.env.REACT_APP_APIKEY}`,
 	);
 	const [forecastDataGrouped, setForecastDataGrouped] = useState(null);
 	const [activeWeatherCard, setActiveWeatherCard] = useState(0);
 	let timer,
 		timeoutVal = 1000;
-	const updateUrls = (city) => {
+	const updateUrls = (city, degree) => {
 		setCWeatherUrl(
-			`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`,
+			`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${degree}&appid=${process.env.REACT_APP_APIKEY}`,
 		);
 		setForecastUrl(
-			`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`,
+			`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${degree}&appid=${process.env.REACT_APP_APIKEY}`,
 		);
 	};
 	let { data: cWeatherData, error: cWeatherError, loading: cWeatherLoading } = useFetch(cWeatherUrl);
@@ -81,6 +83,10 @@ function App() {
 	}, [cWeatherData]);
 
 	useEffect(() => {
+		updateUrls(city, degree);
+	}, [degree]);
+
+	useEffect(() => {
 		const groupDataByDate = () => {
 			const groups = forecastData.list.reduce((groups, item) => {
 				const date = item.dt_txt.split(' ')[0];
@@ -114,7 +120,7 @@ function App() {
 	} else {
 		return (
 			<>
-				<Navbar />
+				<Navbar changeUnit={degree} setChangeUnit={setDegree} />
 				<main className="main-div">
 					<h2>Enter a city below 👇</h2>
 					<input
@@ -125,7 +131,7 @@ function App() {
 						onKeyUp={() => handleKeyUp()}
 					/>
 					<section id="mapAndWeathercard">
-						<MainWeatherCard data={cWeatherData} />
+						<MainWeatherCard data={cWeatherData} changeUnit={degree} />
 						<MapContainer setCWeatherUrl={setCWeatherUrl} setForecastUrl={setForecastUrl} coord={cWeatherData.coord} />
 					</section>
 
@@ -134,10 +140,11 @@ function App() {
 							data={forecastDataGrouped}
 							setActiveWeatherCard={setActiveWeatherCard}
 							activeWeatherCard={activeWeatherCard}
+							changeUnit={degree}
 						/>
 					</section>
 					<section>
-						<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} />
+						<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} changeUnit={degree} />
 					</section>
 
 					<section>
