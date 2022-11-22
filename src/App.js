@@ -42,6 +42,41 @@ function App() {
 			updateUrls(city);
 		}, timeoutVal);
 	};
+	const findLocation = () => {
+		navigator.geolocation.getCurrentPosition((position) => {
+			setCWeatherUrl(
+				'https://api.openweathermap.org/data/2.5/weather?lat=' +
+					position.coords.latitude +
+					'&lon=' +
+					position.coords.longitude +
+					'&units=metric&appid=' +
+					process.env.REACT_APP_APIKEY,
+			);
+
+			setForecastUrl(
+				'https://api.openweathermap.org/data/2.5/forecast?lat=' +
+					position.coords.latitude +
+					'&lon=' +
+					position.coords.longitude +
+					'&units=metric&appid=' +
+					process.env.REACT_APP_APIKEY,
+			);
+		});
+	};
+
+	useEffect(() => {
+		if (navigator.geolocation) {
+			findLocation();
+		} else {
+			alert('Geolocation is not supported by this browser.');
+		}
+	}, []);
+
+	useEffect(() => {
+		if (cWeatherData != null) {
+			setCity(cWeatherData.name);
+		}
+	}, [cWeatherData]);
 
 	useEffect(() => {
 		const groupDataByDate = () => {
