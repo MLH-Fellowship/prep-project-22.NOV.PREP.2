@@ -12,6 +12,11 @@ import PlaylistRecommendation from './Components/PlaylistRecommendation';
 
 function App() {
 	const [city, setCity] = useState('New York City');
+	const [weatherType, setWeatherType] = useState("");
+	const [isLoaded, setIsLoaded] = useState(false);
+	const [error, setError] = useState(null);
+	const [results, setResults] = useState(null);
+
 	const [cWeatherUrl, setCWeatherUrl] = useState(
 		`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.REACT_APP_APIKEY}`,
 	);
@@ -42,6 +47,53 @@ function App() {
 			updateUrls(city);
 		}, timeoutVal);
 	};
+	useEffect(() => {
+    fetch(
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+        city +
+        "&units=metric&appid=" +
+        process.env.REACT_APP_APIKEY
+    )
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log(result);
+
+          if (result["cod"] !== 200) {
+            setIsLoaded(false);
+            setError(result);
+          } else {
+            setIsLoaded(true);
+            setResults(result);
+            setWeatherType(result.weather[0].main);
+            
+          }
+        },
+        error => {
+          setIsLoaded(false);
+          setError(error);
+          setWeatherType(error);
+        }
+      );
+  }, [city]);
+
+  
+  const weather = (weatherType) => {
+	switch (weatherType) {
+	  case "Rain":
+		return "rainy"
+	  case "Clouds":
+		return "cloudy"
+	  case "Snow":
+		return "snowy"
+	  case "Clear":
+		return "clear"
+	  case "Haze":
+		return "haze"
+	  default:
+		return "default"
+	}
+  };
 
 	useEffect(() => {
 		const groupDataByDate = () => {
@@ -67,7 +119,7 @@ function App() {
 	}, [forecastData]);
 
 	if (cWeatherError || forecastError) {
-		return <div>Error: {cWeatherError.message || forecastError.message}</div>;
+		return <div >Error: {cWeatherError.message || forecastError.message}</div>;
 	} else if (cWeatherLoading || forecastLoading || cWeatherData == null || forecastData == null) {
 		return (
 			<div id="loader">
@@ -76,7 +128,7 @@ function App() {
 		);
 	} else {
 		return (
-			<>
+			<div className={weather(weatherType)}>
 				<Navbar />
 				<main className="main-div">
 					<h2>Enter a city below 👇</h2>
@@ -107,6 +159,7 @@ function App() {
 						<p className="required-things-heading">Things you should carry in your bag 🎒</p>
 						<Box itemType="things" weather={cWeatherData.weather[0].main} />
 					</section>
+					
 					<section>
 						<p className="required-things-heading">Things you eat 😋</p>
 						<Box itemType="food" weather={cWeatherData.weather[0].main} />
@@ -116,7 +169,7 @@ function App() {
 						{!cWeatherLoading && cWeatherData && <PlaylistRecommendation weather={cWeatherData.weather[0].main} />}
 					</section>
 				</main>
-			</>
+			</div>
 		);
 	}
 }
