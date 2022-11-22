@@ -42,7 +42,7 @@ function App() {
 	const handleKeyDown = () => {
 		window.clearTimeout(timer);
 	};
-	const handleKeyUp = (e) => {
+	const handleKeyUp = () => {
 		if (city) {
 			window.clearTimeout(timer);
 			timer = window.setTimeout(() => {
@@ -181,6 +181,7 @@ function App() {
 						onKeyDown={() => handleKeyDown()}
 						onKeyUp={() => handleKeyUp()}
 					/>
+
 					<section id="mapAndWeathercard">
 						<MainWeatherCard data={cWeatherData} changeUnit={degree} />
 						<MapContainer setCWeatherUrl={setCWeatherUrl} setForecastUrl={setForecastUrl} coord={cWeatherData.coord} />
@@ -194,21 +195,23 @@ function App() {
 							changeUnit={degree}
 						/>
 					</section>
+
 					<section>
 						<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} changeUnit={degree} />
 					</section>
 
 					<section>
-						<p className="required-things-heading">Things you should carry in your bag 🎒</p>
+						<p className="required-things-heading">SUGGESTED ITEMS 🎒</p>
 						<Box itemType="things" weather={cWeatherData.weather[0].main} />
 					</section>
-					
+
 					<section>
-						<p className="required-things-heading">Things you eat 😋</p>
+						<p className="required-things-heading">SUGGESTED FOOD 😋</p>
 						<Box itemType="food" weather={cWeatherData.weather[0].main} />
 					</section>
+
 					<section>
-						<p className="required-things-heading">Songs to listen to 🎶</p>
+						<p className="required-things-heading">SUGGESTED SONGS 🎶</p>
 						<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
 					</section>
 				</main>
