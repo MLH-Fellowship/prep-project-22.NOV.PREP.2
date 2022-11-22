@@ -9,7 +9,7 @@ const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard, changeUn
 			return 1;
 		} else if (window.innerWidth > 450 && window.innerWidth <= 800) {
 			return 2;
-		} else if (window.innerWidth > 800 && window.innerWidth <= 1024) {
+		} else if (window.innerWidth > 800 && window.innerWidth <= 1280) {
 			return 4;
 		} else {
 			return 5;
