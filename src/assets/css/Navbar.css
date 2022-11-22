@@ -9,6 +9,7 @@
 	backdrop-filter: blur(4px);
 	padding: 20px 0;
 	width: 100vw;
+	z-index: 1000;
 }
 
 .navbar-btns {
@@ -27,6 +28,7 @@
 	font-size: large;
 	background: rgba(0, 0, 0, 0.5);
 	border: none;
+	gap: 5px;
 }
 
 .saved-locations-btn {
@@ -112,10 +114,6 @@
 	-webkit-transition: all 0.2s ease;
 	-moz-transition: all 0.2s ease;
 	transition: all 0.2s ease;
-}
-
-.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-	background-color: #000000;
 }
 
 .react-toggle--checked .react-toggle-track {
