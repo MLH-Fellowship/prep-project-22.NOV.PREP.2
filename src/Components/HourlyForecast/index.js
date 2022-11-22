@@ -48,7 +48,7 @@ const HourlyForecast = ({ data, changeUnit }) => {
 				title: {
 					display: true,
 					color: 'white',
-					text: `Temperature °${changeUnit == 'metric' ? 'C' : 'F'}`,
+					text: `Temperature °${changeUnit === 'metric' ? 'C' : 'F'}`,
 				},
 				grid: {
 					borderColor: 'white',
