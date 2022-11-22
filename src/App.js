@@ -9,6 +9,7 @@ import Box from './Components/RequiredThings/Box';
 import Loader from './Components/Loader';
 import MapContainer from './Components/Map';
 import PlaylistRecommendation from './Components/PlaylistRecommendation';
+import Footer from './Components/Footer';
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -163,6 +164,9 @@ function App() {
 						<p className="required-things-heading">SUGGESTED SONGS 🎶</p>
 						<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
 					</section>
+					<div className="App">
+						<Footer />
+					</div>
 				</main>
 			</>
 		);
