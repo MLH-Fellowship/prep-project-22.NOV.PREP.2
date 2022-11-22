@@ -1,5 +1,5 @@
 import '../../assets/css/Footer.css';
-import logo from '../../assets/img/logofinal.png';
+import logofooter from '../../assets/img/logofinal.png';
 import React from 'react';
 
 const Footer = () => {
@@ -7,7 +7,7 @@ const Footer = () => {
 		<footer bgColor="light" className="text-center text-lg-left">
 			<div className="content">
 				<a className="footer-text">Made with ❤️ by</a>
-				<img src={logo} className="logo" alt="logo" />
+				<img src={logofooter} className="logofooter" alt="logo" />
 			</div>
 		</footer>
 	);

@@ -18,4 +18,10 @@ footer {
 	padding-top: 65px;
 	font-size: x-large;
 	float: right;
+    margin: 15px;
+}
+
+.logofooter{
+    width: 150px;
+    height: auto;
 }
