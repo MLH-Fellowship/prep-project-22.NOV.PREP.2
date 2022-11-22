@@ -1,13 +1,22 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.icon {
+	cursor: pointer;
+}
+
 .weatherCards {
 	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .weatherCard {
-	flex: 1 1 auto;
 	padding-left: 10px;
 	padding-right: 10px;
-	width: 20%;
 	background-color: white;
 	margin: 10px;
+	padding: 10px;
 	height: 20%;
 	color: black;
 	cursor: pointer;
@@ -29,6 +38,7 @@
 	align-items: center;
 	justify-content: space-around;
 }
-p:first-child {
-	font-weight: 500;
+
+.weatherCard > div:last-child {
+	margin-top: 10px;
 }
