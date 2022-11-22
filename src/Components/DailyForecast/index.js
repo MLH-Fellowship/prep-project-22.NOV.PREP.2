@@ -9,10 +9,10 @@ const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard, changeUn
 			return 1;
 		} else if (window.innerWidth > 450 && window.innerWidth <= 800) {
 			return 2;
-		} else if (window.innerWidth > 800 && window.innerWidth <= 1024 ) {
+		} else if (window.innerWidth > 800 && window.innerWidth <= 1024) {
 			return 4;
-		}else{
-            return 5; 
+		} else {
+			return 5;
 		}
 	};
 	const [startIndex, setStartIndex] = useState(0);
@@ -71,7 +71,7 @@ const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard, changeUn
 							</div>
 						</div>
 					))}
-			{initialNOfitems() < 5  &&<FcNext className="icon" onClick={() => nextWeatherCard()} />}
+			{initialNOfitems() < 5 && <FcNext className="icon" onClick={() => nextWeatherCard()} />}
 		</div>
 	);
 };
