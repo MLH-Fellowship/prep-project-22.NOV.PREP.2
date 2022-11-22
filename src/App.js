@@ -9,6 +9,7 @@ import Box from './Components/RequiredThings/Box';
 import Loader from './Components/Loader';
 import MapContainer from './Components/Map';
 import PlaylistRecommendation from './Components/PlaylistRecommendation';
+import Autocomplete from './Components/Autocomplete';
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -123,13 +124,25 @@ function App() {
 				<Navbar changeUnit={degree} setChangeUnit={setDegree} />
 				<main className="main-div">
 					<h2>Enter a city below 👇</h2>
-					<input
+					{/* <input
 						type="text"
 						value={city}
 						onChange={(e) => setCity(e.currentTarget.value)}
 						onKeyDown={() => handleKeyDown()}
 						onKeyUp={() => handleKeyUp()}
+					/> */}
+
+					<Autocomplete
+						changeCity={city}
+						setChangeCity={setCity}
+						update={updateUrls}
+						deg={degree}
+						value={city}
+						onChange={(e) => setCity(e.currentTarget.value)}
+						onKeyDown={() => handleKeyDown()}
+						onKeyUp={() => handleKeyUp()}
 					/>
+
 					<section id="mapAndWeathercard">
 						<MainWeatherCard data={cWeatherData} changeUnit={degree} />
 						<MapContainer setCWeatherUrl={setCWeatherUrl} setForecastUrl={setForecastUrl} coord={cWeatherData.coord} />
