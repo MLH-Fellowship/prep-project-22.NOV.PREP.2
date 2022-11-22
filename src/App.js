@@ -135,6 +135,7 @@ function App() {
 
 	useEffect(() => {
 		updateUrls(city, degree);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [degree]);
 
 	useEffect(() => {
