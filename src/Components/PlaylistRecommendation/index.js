@@ -22,7 +22,7 @@ const PlaylistRecommendation = ({ weather }) => {
 						weatherConditions.get(weatherConditions.has(weather) ? weather : 'Rest') +
 						'?utm_source=generator"\n' +
 						'                width="83%" height="280" frameBorder="0" allowFullScreen=""\n' +
-						'                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"\n' +
+						'                allow="autoplay"; clipboard-write; encrypted-media; fullscreen; picture-in-picture"\n' +
 						'                loading="lazy"></iframe>',
 				}}
 			/>
