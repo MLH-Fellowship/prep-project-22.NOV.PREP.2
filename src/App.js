@@ -33,7 +33,7 @@ function App() {
 	let { data: cWeatherData, error: cWeatherError, loading: cWeatherLoading } = useFetch(cWeatherUrl);
 	let { data: forecastData, error: forecastError, loading: forecastLoading } = useFetch(forecastUrl);
 
-	const handleKeyDown = (e) => {
+	const handleKeyDown = () => {
 		window.clearTimeout(timer);
 	};
 	const handleKeyUp = (e) => {
@@ -86,16 +86,12 @@ function App() {
 						type="text"
 						value={city}
 						onChange={(e) => setCity(e.currentTarget.value)}
-						onKeyDown={(e) => handleKeyDown(e)}
-						onKeyUp={(e) => handleKeyUp(e)}
+						onKeyDown={() => handleKeyDown()}
+						onKeyUp={() => handleKeyUp()}
 					/>
 					<section id="mapAndWeathercard">
 						<MainWeatherCard data={cWeatherData} />
 						<MapContainer setCWeatherUrl={setCWeatherUrl} setForecastUrl={setForecastUrl} coord={cWeatherData.coord} />
-					</section>
-
-					<section>
-						<PlaylistRecommendation weatherCondition={cWeatherData.weather[0].main} />
 					</section>
 
 					<section>
@@ -116,6 +112,10 @@ function App() {
 					<section>
 						<p className="required-things-heading">Things you eat 😋</p>
 						<Box itemType="food" weather={cWeatherData.weather[0].main} />
+					</section>
+					<section>
+						<p className="required-things-heading">Songs to listen to 🎶</p>
+						<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
 					</section>
 				</main>
 			</>
