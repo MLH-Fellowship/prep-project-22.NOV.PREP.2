@@ -12,6 +12,10 @@ import PlaylistRecommendation from './components/PlaylistRecommendation';
 
 function App() {
 	const [city, setCity] = useState('New York City');
+	const [weatherType, setWeatherType] = useState("");
+	const [isLoaded, setIsLoaded] = useState(false);
+	const [error, setError] = useState(null);
+	const [results, setResults] = useState(null);
 	const [degree, setDegree] = useState('metric');
 
 	const [cWeatherUrl, setCWeatherUrl] = useState(
@@ -46,6 +50,53 @@ function App() {
 			}, timeoutVal);
 		}
 	};
+	useEffect(() => {
+    fetch(
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+        city +
+        "&units=metric&appid=" +
+        process.env.REACT_APP_APIKEY
+    )
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log(result);
+
+          if (result["cod"] !== 200) {
+            setIsLoaded(false);
+            setError(result);
+          } else {
+            setIsLoaded(true);
+            setResults(result);
+            setWeatherType(result.weather[0].main);
+            
+          }
+        },
+        error => {
+          setIsLoaded(false);
+          setError(error);
+          setWeatherType(error);
+        }
+      );
+  }, [city]);
+
+  
+  const weather = (weatherType) => {
+	switch (weatherType) {
+	  case "Rain":
+		return "rainy"
+	  case "Clouds":
+		return "cloudy"
+	  case "Snow":
+		return "snowy"
+	  case "Clear":
+		return "clear"
+	  case "Haze":
+		return "haze"
+	  default:
+		return "default"
+	}
+  };
 	const findLocation = () => {
 		navigator.geolocation.getCurrentPosition((position) => {
 			setCWeatherUrl(
@@ -84,6 +135,7 @@ function App() {
 
 	useEffect(() => {
 		updateUrls(city, degree);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [degree]);
 
 	useEffect(() => {
@@ -110,7 +162,7 @@ function App() {
 	}, [forecastData]);
 
 	if (cWeatherError || forecastError) {
-		return <div>Error: {cWeatherError.message || forecastError.message}</div>;
+		return <div >Error: {cWeatherError.message || forecastError.message}</div>;
 	} else if (cWeatherLoading || forecastLoading || cWeatherData == null || forecastData == null) {
 		return (
 			<div id="loader">
@@ -119,7 +171,7 @@ function App() {
 		);
 	} else {
 		return (
-			<>
+			<div className={weather(weatherType)}>
 				<Navbar changeUnit={degree} setChangeUnit={setDegree} />
 				<main className="main-div">
 					<h2>Enter a city below 👇</h2>
@@ -164,7 +216,7 @@ function App() {
 						<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
 					</section>
 				</main>
-			</>
+			</div>
 		);
 	}
 }
