@@ -12,6 +12,7 @@ const MapContainer = ({ coord, setCWeatherUrl, setForecastUrl }) => {
 	const containerStyle = {
 		width: `${updateWidth()}%`,
 		height: '200px',
+		zIndex: '-100'
 	};
 
 	const [center, setCenter] = useState({
