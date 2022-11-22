@@ -36,11 +36,13 @@ function App() {
 	const handleKeyDown = () => {
 		window.clearTimeout(timer);
 	};
-	const handleKeyUp = () => {
-		window.clearTimeout(timer);
-		timer = window.setTimeout(() => {
-			updateUrls(city);
-		}, timeoutVal);
+	const handleKeyUp = (e) => {
+		if (city) {
+			window.clearTimeout(timer);
+			timer = window.setTimeout(() => {
+				updateUrls(city);
+			}, timeoutVal);
+		}
 	};
 	const findLocation = () => {
 		navigator.geolocation.getCurrentPosition((position) => {
