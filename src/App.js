@@ -12,11 +12,7 @@ import PlaylistRecommendation from './components/PlaylistRecommendation';
 
 function App() {
 	const [city, setCity] = useState('New York City');
-	const [weatherType, setWeatherType] = useState("");
-	const [isLoaded, setIsLoaded] = useState(false);
-	const [error, setError] = useState(null);
-	const [results, setResults] = useState(null);
-	const [degree, setDegree] = useState('metric');
+ 	const [degree, setDegree] = useState('metric');
 
 	const [cWeatherUrl, setCWeatherUrl] = useState(
 		`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${degree}&appid=${process.env.REACT_APP_APIKEY}`,
@@ -50,35 +46,6 @@ function App() {
 			}, timeoutVal);
 		}
 	};
-	useEffect(() => {
-    fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=" +
-        city +
-        "&units=metric&appid=" +
-        process.env.REACT_APP_APIKEY
-    )
-      .then(res => res.json())
-      .then(
-        result => {
-          console.log(result);
-
-          if (result["cod"] !== 200) {
-            setIsLoaded(false);
-            setError(result);
-          } else {
-            setIsLoaded(true);
-            setResults(result);
-            setWeatherType(result.weather[0].main);
-            
-          }
-        },
-        error => {
-          setIsLoaded(false);
-          setError(error);
-          setWeatherType(error);
-        }
-      );
-  }, [city]);
 
   
   const weather = (weatherType) => {
@@ -171,7 +138,7 @@ function App() {
 		);
 	} else {
 		return (
-			<div className={weather(weatherType)}>
+			<div className={weather(cWeatherData.weather[0].main)}>
 				<Navbar changeUnit={degree} setChangeUnit={setDegree} />
 				<main className="main-div">
 					<h2>Enter a city below 👇</h2>
