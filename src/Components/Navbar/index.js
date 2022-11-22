@@ -20,7 +20,7 @@ const Navbar = ({ changeUnit, setChangeUnit }) => {
 				<div className="toggle-btn nav-item">
 					<span>°C </span>
 					<Toggle
-						defaultChecked={changeUnit == 'imperial' ? true : false}
+						defaultChecked={changeUnit === 'imperial' ? true : false}
 						icons={false}
 						onChange={(event) => {
 							event.target.checked ? setChangeUnit('imperial') : setChangeUnit('metric');
