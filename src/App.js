@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import { useFetch } from './hooks/useFetch';
-import DailyForecast from './Components/DailyForecast';
-import HourlyForecast from './Components/HourlyForecast';
-import Navbar from './Components/Navbar';
-import MainWeatherCard from './Components/MainWeatherCard';
-import Box from './Components/RequiredThings/Box';
-import Loader from './Components/Loader';
-import MapContainer from './Components/Map';
-import PlaylistRecommendation from './Components/PlaylistRecommendation';
+import DailyForecast from './components/DailyForecast';
+import HourlyForecast from './components/HourlyForecast';
+import Navbar from './components/Navbar';
+import MainWeatherCard from './components/MainWeatherCard';
+import Box from './components/RequiredThings/Box';
+import Loader from './components/Loader';
+import MapContainer from './components/Map';
+import PlaylistRecommendation from './components/PlaylistRecommendation';
 
 function App() {
 	const [city, setCity] = useState('New York City');
