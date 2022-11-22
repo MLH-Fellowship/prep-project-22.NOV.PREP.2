@@ -37,11 +37,15 @@ function App() {
 		window.clearTimeout(timer);
 	};
 	const handleKeyUp = (e) => {
-		window.clearTimeout(timer);
-		timer = window.setTimeout(() => {
-			updateUrls(city);
-		}, timeoutVal);
+		if(city){
+			window.clearTimeout(timer);
+			timer = window.setTimeout(() => {
+				updateUrls(city);
+			}, timeoutVal);
+		}
 	};
+
+ 
 
 	useEffect(() => {
 		const groupDataByDate = () => {
