@@ -25,7 +25,7 @@ const Autocomplete = ({ setChangeCity, update, deg }) => {
 	};
 
 	return (
-		<div className="search-bar" style={{ width: 400, margin: '0 auto', zIndex: '1000' }}>
+		<div className="search-bar" style={{ width: 400, margin: '0 auto' }}>
 			<ReactSearchAutocomplete
 				items={locations}
 				onSearch={(city) => {

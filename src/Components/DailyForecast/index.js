@@ -53,7 +53,7 @@ const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard, changeUn
 									alt="weather icon"
 								/>
 								<h4>
-									{element.data[0]?.main.temp} &deg; {changeUnit == 'metric' ? 'C' : 'F'}
+									{element.data[0]?.main.temp} &deg; {changeUnit === 'metric' ? 'C' : 'F'}
 								</h4>
 							</div>
 							<p>{element.data[0]?.weather[0].main}</p>

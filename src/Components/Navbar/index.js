@@ -20,7 +20,7 @@ const Navbar = ({ changeUnit, setChangeUnit }) => {
 				<div className="toggle-btn nav-item">
 					<span>°C </span>
 					<Toggle
-						defaultChecked={changeUnit == 'imperial' ? true : false}
+						defaultChecked={changeUnit === 'imperial'}
 						icons={false}
 						onChange={(event) => {
 							event.target.checked ? setChangeUnit('imperial') : setChangeUnit('metric');
@@ -31,9 +31,9 @@ const Navbar = ({ changeUnit, setChangeUnit }) => {
 				</div>
 			</div>
 			<div className="navbar-hamburger" onClick={hamburgerClicked}>
-				<span class="bar"></span>
-				<span class="bar"></span>
-				<span class="bar"></span>
+				<span className="bar"></span>
+				<span className="bar"></span>
+				<span className="bar"></span>
 			</div>
 		</nav>
 	);
