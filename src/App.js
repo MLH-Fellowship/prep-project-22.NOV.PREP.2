@@ -225,6 +225,11 @@ function App() {
 						</section>
 
 						<section>
+							<p className="required-things-heading">SUGGESTED ACTIVITIES 🙆🏻‍♂️</p>
+							<Box itemType="activities" weather={cWeatherData.weather[0].main} />
+						</section>
+
+						<section>
 							<p className="required-things-heading">SUGGESTED SONGS 🎶</p>
 							<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
 						</section>
