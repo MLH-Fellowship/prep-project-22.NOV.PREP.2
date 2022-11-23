@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { useFetch } from './Hooks/useFetch';
+import { useFetch } from './hooks/useFetch';
 import DailyForecast from './Components/DailyForecast';
 import HourlyForecast from './Components/HourlyForecast';
 import Navbar from './Components/Navbar';
