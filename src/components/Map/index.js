@@ -31,7 +31,7 @@ const MapContainer = ({ coord, setCWeatherUrl, setForecastUrl }) => {
 	};
 
 	return (
-		<LoadScript googleMapsApiKey="AIzaSyBShwQPxU1woXWRZR9hiWHUnbacBu1DMKg">
+		<LoadScript googleMapsApiKey={process.env.REACT_APP_MAPKEY}>
 			<GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10} onClick={(e) => handleOnclick(e)}>
 				<Marker position={center} />
 			</GoogleMap>
