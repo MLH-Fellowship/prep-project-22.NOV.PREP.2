@@ -12,7 +12,6 @@ const MapContainer = ({ coord, setCWeatherUrl, setForecastUrl }) => {
 	const containerStyle = {
 		width: `${updateWidth()}%`,
 		height: '200px',
-		zIndex: '-100',
 	};
 
 	const [center, setCenter] = useState({
@@ -31,7 +30,7 @@ const MapContainer = ({ coord, setCWeatherUrl, setForecastUrl }) => {
 	};
 
 	return (
-		<LoadScript googleMapsApiKey="AIzaSyBShwQPxU1woXWRZR9hiWHUnbacBu1DMKg">
+		<LoadScript googleMapsApiKey={process.env.REACT_APP_MAPKEY}>
 			<GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10} onClick={(e) => handleOnclick(e)}>
 				<Marker position={center} />
 			</GoogleMap>
