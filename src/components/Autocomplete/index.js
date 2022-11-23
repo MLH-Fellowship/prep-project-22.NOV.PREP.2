@@ -34,7 +34,7 @@ const Autocomplete = ({ setChangeCity, update, deg }) => {
 				onSelect={(label) => {
 					let city = label.name.split(',')[0];
 					setChangeCity(city);
-					update(city, deg == 'metric' ? 'metric' : 'imperial');
+					update(city, deg === 'metric' ? 'metric' : 'imperial');
 				}}
 				autoFocus
 				placeholder="Enter a city"
