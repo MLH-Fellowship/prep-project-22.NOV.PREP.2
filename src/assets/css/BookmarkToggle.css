@@ -1,0 +1,16 @@
+.search-bar-items {
+	display: inline-block;
+	position: relative;
+	padding: 7px;
+}
+
+.search-bar {
+	margin: 20px;
+}
+
+.bookmark-btn {
+	height: 20px;
+	font-size: 26px;
+	background-color: inherit;
+	border: none;
+}

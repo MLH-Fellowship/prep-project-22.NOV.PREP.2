@@ -10,13 +10,15 @@ import Loader from './components/Loader';
 import MapContainer from './components/Map';
 import PlaylistRecommendation from './components/PlaylistRecommendation';
 import Footer from './components/Footer';
+import Bookmark from './components/Bookmark';
+import { BookmarkProvider } from './helpers/context/bookmark';
 
 function App() {
 	const [city, setCity] = useState('New York City');
 	const [weatherType, setWeatherType] = useState('');
-	const [isLoaded, setIsLoaded] = useState(false);
-	const [error, setError] = useState(null);
-	const [results, setResults] = useState(null);
+	const [, setIsLoaded] = useState(false);
+	const [, setError] = useState(null);
+	const [, setResults] = useState(null);
 	const [degree, setDegree] = useState('metric');
 
 	const [cWeatherUrl, setCWeatherUrl] = useState(
@@ -170,56 +172,66 @@ function App() {
 		);
 	} else {
 		return (
-			<div className={weather(weatherType)}>
-				<Navbar changeUnit={degree} setChangeUnit={setDegree} />
-				<main className="main-div">
-					<h2>Enter a city below 👇</h2>
-					<input
-						type="text"
-						value={city}
-						onChange={(e) => setCity(e.currentTarget.value)}
-						onKeyDown={() => handleKeyDown()}
-						onKeyUp={() => handleKeyUp()}
-					/>
-
-					<section id="mapAndWeathercard">
-						<MainWeatherCard data={cWeatherData} changeUnit={degree} />
-						<MapContainer setCWeatherUrl={setCWeatherUrl} setForecastUrl={setForecastUrl} coord={cWeatherData.coord} />
-					</section>
-
-					<section>
-						<DailyForecast
-							data={forecastDataGrouped}
-							setActiveWeatherCard={setActiveWeatherCard}
-							activeWeatherCard={activeWeatherCard}
-							changeUnit={degree}
+			<BookmarkProvider>
+				<div className={weather(weatherType)}>
+					<Navbar changeUnit={degree} setChangeUnit={setDegree} />
+					<main className="main-div">
+						<h2>Enter a city below 👇</h2>
+						<input
+							type="text"
+							value={city}
+							onChange={(e) => setCity(e.currentTarget.value)}
+							onKeyDown={() => handleKeyDown()}
+							onKeyUp={() => handleKeyUp()}
 						/>
-					</section>
 
-					<section>
-						<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} changeUnit={degree} />
-					</section>
+						<div className="search-bar-items">
+							<Bookmark city={city}> </Bookmark>
+						</div>
 
-					<section>
-						<p className="required-things-heading">SUGGESTED ITEMS 🎒</p>
-						<Box itemType="things" weather={cWeatherData.weather[0].main} />
-					</section>
+						<section id="mapAndWeathercard">
+							<MainWeatherCard data={cWeatherData} changeUnit={degree} />
+							<MapContainer
+								setCWeatherUrl={setCWeatherUrl}
+								setForecastUrl={setForecastUrl}
+								coord={cWeatherData.coord}
+							/>
+						</section>
 
-					<section>
-						<p className="required-things-heading">SUGGESTED FOOD 😋</p>
-						<Box itemType="food" weather={cWeatherData.weather[0].main} />
-					</section>
+						<section>
+							<DailyForecast
+								data={forecastDataGrouped}
+								setActiveWeatherCard={setActiveWeatherCard}
+								activeWeatherCard={activeWeatherCard}
+								changeUnit={degree}
+							/>
+						</section>
 
-					<section>
-						<p className="required-things-heading">SUGGESTED SONGS 🎶</p>
-						<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
-					</section>
+						<section>
+							<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} changeUnit={degree} />
+						</section>
 
-					<div className="App">
-						<Footer />
-					</div>
-				</main>
-			</div>
+						<section>
+							<p className="required-things-heading">SUGGESTED ITEMS 🎒</p>
+							<Box itemType="things" weather={cWeatherData.weather[0].main} />
+						</section>
+
+						<section>
+							<p className="required-things-heading">SUGGESTED FOOD 😋</p>
+							<Box itemType="food" weather={cWeatherData.weather[0].main} />
+						</section>
+
+						<section>
+							<p className="required-things-heading">SUGGESTED SONGS 🎶</p>
+							<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
+						</section>
+
+						<div className="App">
+							<Footer />
+						</div>
+					</main>
+				</div>
+			</BookmarkProvider>
 		);
 	}
 }
