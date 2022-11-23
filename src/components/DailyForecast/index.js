@@ -7,10 +7,12 @@ const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard, changeUn
 	const initialNOfitems = () => {
 		if (window.innerWidth < 450) {
 			return 1;
-		} else if (window.innerWidth > 450 && window.innerWidth < 800) {
+		} else if (window.innerWidth > 450 && window.innerWidth <= 800) {
 			return 2;
-		} else {
+		} else if (window.innerWidth > 800 && window.innerWidth <= 1280) {
 			return 4;
+		} else {
+			return 5;
 		}
 	};
 	const [startIndex, setStartIndex] = useState(0);
@@ -35,7 +37,7 @@ const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard, changeUn
 
 	return (
 		<div className="weatherCards">
-			<FcPrevious onClick={() => prevWeatherCard()} className="icon" />
+			{initialNOfitems() < 5 && <FcPrevious onClick={() => prevWeatherCard()} className="icon" />}
 
 			{data &&
 				data
@@ -69,7 +71,7 @@ const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard, changeUn
 							</div>
 						</div>
 					))}
-			<FcNext className="icon" onClick={() => nextWeatherCard()} />
+			{initialNOfitems() < 5 && <FcNext className="icon" onClick={() => nextWeatherCard()} />}
 		</div>
 	);
 };
