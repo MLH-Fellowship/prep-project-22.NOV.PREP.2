@@ -1,0 +1,27 @@
+footer {
+	background: rgba(0, 0, 0, 0.3);
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	backdrop-filter: blur(4px);
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin-top: 30px;
+	text-align: center;
+}
+
+.content {
+	display: flex;
+	justify-content: center;
+}
+
+.footer-text {
+	padding-top: 65px;
+	font-size: x-large;
+	float: right;
+	margin: 15px;
+}
+
+.logofooter {
+	width: 150px;
+	height: auto;
+}

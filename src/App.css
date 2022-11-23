@@ -46,48 +46,40 @@ input {
 /*  */
 .rainy {
 	/* background-color: rgb(82, 79, 79); */
-	background-image: url("https://media2.giphy.com/media/l0Iy5fjHyedk9aDGU/giphy.gif?cid=ecf05e470b4lpfj2dledendinj9grejzev27fbn91cc2jr6o&rid=giphy.gif&ct=g");
+	background-image: url('https://media2.giphy.com/media/l0Iy5fjHyedk9aDGU/giphy.gif?cid=ecf05e470b4lpfj2dledendinj9grejzev27fbn91cc2jr6o&rid=giphy.gif&ct=g');
 	height: 108vh;
 	background-repeat: no-repeat;
 	background-size: cover;
-  }
-  .cloudy {
-	background-image: url("https://media2.giphy.com/media/3ohs4uJC1G9NNq03fi/giphy.gif?cid=ecf05e473xlsnrp5tnkllghlkc2p14r6n73th94f8vjq1o86&rid=giphy.gif&ct=g");
+}
+.cloudy {
+	background-image: url('https://media2.giphy.com/media/3ohs4uJC1G9NNq03fi/giphy.gif?cid=ecf05e473xlsnrp5tnkllghlkc2p14r6n73th94f8vjq1o86&rid=giphy.gif&ct=g');
 	height: 108vh;
 	background-repeat: no-repeat;
 	background-size: cover;
-  
-  
-  }
-  .snowy {
-	background-image: url("https://media1.giphy.com/media/rRmBOCZDJJGU0/giphy.gif?cid=ecf05e47116o724tfd60fodewt04e3cjbpmi6s5n9q9liefr&rid=giphy.gif&ct=g");
+}
+.snowy {
+	background-image: url('https://media1.giphy.com/media/rRmBOCZDJJGU0/giphy.gif?cid=ecf05e47116o724tfd60fodewt04e3cjbpmi6s5n9q9liefr&rid=giphy.gif&ct=g');
 	height: 108vh;
 	background-repeat: no-repeat;
 	background-size: cover;
-
-  
-  
-  }
-  .clear {
-	background-image: url("https://images.unsplash.com/photo-1622278647429-71bc97e904e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80");
+}
+.clear {
+	background-image: url('https://images.unsplash.com/photo-1622278647429-71bc97e904e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80');
 	height: 108vh;
 	background-repeat: no-repeat;
 	background-size: cover;
 	opacity: 0.9;
 	z-index: 1;
-  
-  
-  }
-  .haze {
-	background-image: url("https://images.unsplash.com/photo-1524252500348-1bb07b83f3be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+}
+.haze {
+	background-image: url('https://images.unsplash.com/photo-1524252500348-1bb07b83f3be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
 	height: 108vh;
 	background-repeat: no-repeat;
-	background-size: cover;  
-  
-  }
-  .default{
+	background-size: cover;
+}
+.default {
 	background-color: #133667;
 	height: 108vh;
 	background-repeat: no-repeat;
 	background-size: cover;
-  }
+}
