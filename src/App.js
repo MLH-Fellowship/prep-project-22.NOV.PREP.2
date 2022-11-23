@@ -12,10 +12,6 @@ import PlaylistRecommendation from './components/PlaylistRecommendation';
 
 function App() {
 	const [city, setCity] = useState('New York City');
-	const [weatherType, setWeatherType] = useState('');
-	const [isLoaded, setIsLoaded] = useState(false);
-	const [error, setError] = useState(null);
-	const [results, setResults] = useState(null);
 	const [degree, setDegree] = useState('metric');
 
 	const [cWeatherUrl, setCWeatherUrl] = useState(
@@ -38,7 +34,6 @@ function App() {
 	};
 	let { data: cWeatherData, error: cWeatherError, loading: cWeatherLoading } = useFetch(cWeatherUrl);
 	let { data: forecastData, error: forecastError, loading: forecastLoading } = useFetch(forecastUrl);
-
 	const handleKeyDown = () => {
 		window.clearTimeout(timer);
 	};
@@ -141,7 +136,7 @@ function App() {
 		);
 	} else {
 		return (
-			<div className={weather(cWeatherData[0].main)}>
+			<div className={weather(cWeatherData.main)}>
 				<Navbar changeUnit={degree} setChangeUnit={setDegree} />
 				<main className="main-div">
 					<h2>Enter a city below 👇</h2>
