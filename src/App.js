@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import { useFetch } from './Hooks/useFetch';
-import DailyForecast from './Components/DailyForecast';
-import HourlyForecast from './Components/HourlyForecast';
-import Navbar from './Components/Navbar';
-import MainWeatherCard from './Components/MainWeatherCard';
-import Box from './Components/RequiredThings/Box';
-import Loader from './Components/Loader';
-import MapContainer from './Components/Map';
-import PlaylistRecommendation from './Components/PlaylistRecommendation';
-import Footer from './Components/Footer';
+import { useFetch } from './hooks/useFetch';
+import DailyForecast from './components/DailyForecast';
+import HourlyForecast from './components/HourlyForecast';
+import Navbar from './components/Navbar';
+import MainWeatherCard from './components/MainWeatherCard';
+import Box from './components/RequiredThings/Box';
+import Loader from './components/Loader';
+import MapContainer from './components/Map';
+import PlaylistRecommendation from './components/PlaylistRecommendation';
+import Footer from './components/Footer';
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -134,6 +134,7 @@ function App() {
 
 	useEffect(() => {
 		updateUrls(city, degree);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [degree]);
 
 	useEffect(() => {
@@ -213,6 +214,7 @@ function App() {
 						<p className="required-things-heading">SUGGESTED SONGS 🎶</p>
 						<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
 					</section>
+
 					<div className="App">
 						<Footer />
 					</div>

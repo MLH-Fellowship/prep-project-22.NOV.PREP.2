@@ -14,7 +14,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-//<div className="navbar-logo">
-//		<img src={logo} className="logo" alt="logo" />
-//	</div>

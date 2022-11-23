@@ -31,9 +31,9 @@ const Navbar = ({ changeUnit, setChangeUnit }) => {
 				</div>
 			</div>
 			<div className="navbar-hamburger" onClick={hamburgerClicked}>
-				<span class="bar"></span>
-				<span class="bar"></span>
-				<span class="bar"></span>
+				<span className="bar"></span>
+				<span className="bar"></span>
+				<span className="bar"></span>
 			</div>
 		</nav>
 	);
