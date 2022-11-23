@@ -2,6 +2,7 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { useState } from 'react';
 
 const MapContainer = ({ coord, setCWeatherUrl, setForecastUrl }) => {
+	console.log(coord);
 	const updateWidth = () => {
 		if (window.innerWidth < 800) {
 			return 90;
@@ -30,7 +31,7 @@ const MapContainer = ({ coord, setCWeatherUrl, setForecastUrl }) => {
 	};
 
 	return (
-		<LoadScript googleMapsApiKey="AIzaSyBShwQPxU1woXWRZR9hiWHUnbacBu1DMKg">
+		<LoadScript googleMapsApiKey={process.env.REACT_APP_MAPKEY}>
 			<GoogleMap mapContainerStyle={containerStyle} center={center} zoom={10} onClick={(e) => handleOnclick(e)}>
 				<Marker position={center} />
 			</GoogleMap>
