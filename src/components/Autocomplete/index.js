@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ReactSearchAutocomplete } from 'react-search-autocomplete';
 
-const Autocomplete = ({ setChangeCity, update, deg }) => {
+const Autocomplete = ({ setChangeCity, update, deg, setChangeLabel }) => {
 	const [locations, setLocations] = useState([]);
 
 	const autoCity = (city) => {
@@ -24,14 +24,25 @@ const Autocomplete = ({ setChangeCity, update, deg }) => {
 		}
 	};
 
+	let styling = {
+		backgroundColor: 'rgba(0, 0, 0, 0.5)',
+		width: 400,
+		margin: '0 auto',
+		borderRadius: '50px',
+		fontSize: '5.5rem',
+		marginBottom: '3rem',
+		boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.5)',
+	};
+
 	return (
-		<div className="search-bar" style={{ width: 400, margin: '0 auto' }}>
+		<div className="search-bar" style={styling}>
 			<ReactSearchAutocomplete
 				items={locations}
 				onSearch={(city) => {
 					autoCity(city);
 				}}
 				onSelect={(label) => {
+					setChangeLabel(label.name);
 					let city = label.name.split(',')[0];
 					setChangeCity(city);
 					update(city, deg === 'metric' ? 'metric' : 'imperial');

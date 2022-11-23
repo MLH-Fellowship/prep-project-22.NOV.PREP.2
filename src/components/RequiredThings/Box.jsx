@@ -5,8 +5,8 @@ import getRequiredMap from './index';
 function Item(props) {
 	return (
 		<div className="flex required-thing">
-			<img src={props.img} alt={props.alt} width="50" height="50"></img>
-			<p>{props.name}</p>
+			<img class="icons" src={props.img} alt={props.alt} width="50" height="50"></img>
+			<h3>{props.name}</h3>
 		</div>
 	);
 }

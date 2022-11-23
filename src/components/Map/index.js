@@ -6,13 +6,14 @@ const MapContainer = ({ coord, setCWeatherUrl, setForecastUrl }) => {
 		if (window.innerWidth < 800) {
 			return 90;
 		} else {
-			return 40;
+			return 50;
 		}
 	};
 	const containerStyle = {
 		width: `${updateWidth()}%`,
-		height: '200px',
+		height: '300px',
 		zIndex: '-1',
+		boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
 	};
 
 	const [center, setCenter] = useState({

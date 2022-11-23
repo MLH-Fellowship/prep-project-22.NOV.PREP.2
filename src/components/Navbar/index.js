@@ -12,28 +12,30 @@ const Navbar = ({ changeUnit, setChangeUnit }) => {
 	};
 	return (
 		<nav className="navbar">
-			<div className="navbar-logo">
-				<img src={logo} className="logo" alt="logo" />
-			</div>
-			<div className="navbar-btns">
-				<button className="saved-locations-btn nav-item">Saved Locations</button>
-				<div className="toggle-btn nav-item">
-					<span>°C </span>
-					<Toggle
-						defaultChecked={changeUnit === 'imperial'}
-						icons={false}
-						onChange={(event) => {
-							event.target.checked ? setChangeUnit('imperial') : setChangeUnit('metric');
-						}}
-						className="unstyled"
-					/>
-					<span> °F</span>
+			<div className="navbar-container">
+				<div className="navbar-logo">
+					<img src={logo} className="logo" alt="logo" />
 				</div>
-			</div>
-			<div className="navbar-hamburger" onClick={hamburgerClicked}>
-				<span className="bar"></span>
-				<span className="bar"></span>
-				<span className="bar"></span>
+				<div className="navbar-btns">
+					<button className="saved-locations-btn nav-item">Saved Locations</button>
+					<div className="toggle-btn nav-item">
+						<span>°C </span>
+						<Toggle
+							defaultChecked={changeUnit === 'imperial'}
+							icons={false}
+							onChange={(event) => {
+								event.target.checked ? setChangeUnit('imperial') : setChangeUnit('metric');
+							}}
+							className="unstyled"
+						/>
+						<span> °F</span>
+					</div>
+				</div>
+				<div className="navbar-hamburger" onClick={hamburgerClicked}>
+					<span className="bar"></span>
+					<span className="bar"></span>
+					<span className="bar"></span>
+				</div>
 			</div>
 		</nav>
 	);

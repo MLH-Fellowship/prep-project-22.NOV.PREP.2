@@ -1,11 +1,20 @@
 .graph {
 	display: flex;
 	justify-content: center;
-	margin: 20px;
 }
 
 .graph div {
-	width: 50%;
+	padding: 20px;
+	width: 60%;
+	background-color: var(--clear-bg-color);
+	box-shadow: var(--box-shadow);
+	backdrop-filter: var(--blur-filter);
+	transition: all 0.5s;
+}
+
+.graph div:hover {
+	transform: scale(1.05);
+	background: var(--clear-bg-color-hover);
 }
 
 @media screen and (max-width: 800px) {

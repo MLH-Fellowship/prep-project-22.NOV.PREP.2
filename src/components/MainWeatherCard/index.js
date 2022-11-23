@@ -13,36 +13,36 @@ const MainWeatherCard = ({ data, changeUnit }) => {
 					<div>
 						<div>
 							<img src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`} alt="weather icon" />
-							<h3>
+							<h1>
 								{data.main.temp} &deg; {changeUnit === 'metric' ? 'C' : 'F'}
-							</h3>
+							</h1>
 						</div>
-						<h4>{data.weather[0].main}</h4>
-						<h5>Feels like {data.main.feels_like}</h5>
+						<h2>{data.weather[0].main}</h2>
+						<h3>Feels like {data.main.feels_like}&deg;</h3>
 					</div>
 
 					<div>
 						<div>
-							<h4>Humidity</h4>
-							<h5>{data.main.humidity}%</h5>
+							<h3>Humidity</h3>
+							<h4>{data.main.humidity}%</h4>
 						</div>
 						<div>
-							<h4>Wind Speed</h4>
-							<h5>{data.wind.speed} km/j</h5>
+							<h3>Wind Speed</h3>
+							<h4>{data.wind.speed} km/j</h4>
 						</div>
 
 						<div>
-							<h4>Temp Min</h4>
-							<h5>
+							<h3>Temp Min</h3>
+							<h4>
 								{data.main.temp_min} &deg; {changeUnit === 'metric' ? 'C' : 'F'}
-							</h5>
+							</h4>
 						</div>
 
 						<div>
-							<h4>Temp Max</h4>
-							<h5>
+							<h3>Temp Max</h3>
+							<h4>
 								{data.main.temp_max} &deg; {changeUnit === 'metric' ? 'C' : 'F'}
-							</h5>
+							</h4>
 						</div>
 					</div>
 				</div>

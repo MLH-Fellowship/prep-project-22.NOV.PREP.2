@@ -2,24 +2,36 @@
 	margin: 0px;
 	padding: 0px;
 }
+
 h4,
 h5,
 h3 {
 	padding: 2px;
 }
+
 .container {
-	width: 40%;
+	width: 50%;
+	z-index: -1;
 }
+
 .card {
-	background-color: white;
+	background-color: var(--clear-bg-color);
 	box-sizing: border-box;
-	border-radius: 5px;
-	color: black;
+	color: var(--white);
 	display: flex;
-	padding: 10px;
+	padding: 30px;
 	flex-direction: column;
 	margin: 20px 20px;
+	box-shadow: var(--box-shadow);
+	backdrop-filter: var(--blur-filter);
+	transition: all 0.5s;
 }
+
+.card:hover {
+	transform: scale(1.1);
+	background: var(--clear-bg-color-hover);
+}
+
 .card > div:last-child {
 	display: grid;
 	grid-template-columns: auto auto;
@@ -41,7 +53,7 @@ h3 {
 }
 
 .card > div:last-child > div:first-child {
-	border-right: 2px solid #133667;
+	border-right: 2px solid #ffffff;
 	height: fit-content;
 }
 
@@ -57,6 +69,7 @@ h3 {
 	.card {
 		width: 90%;
 	}
+
 	.container {
 		display: flex;
 		justify-content: center;
@@ -64,9 +77,11 @@ h3 {
 		width: 90%;
 		margin: 20px 0;
 	}
+
 	.card > div:last-child > div:first-child {
 		border-right: none;
 	}
+
 	.card > div:last-child {
 		grid-template-columns: auto;
 		grid-template-rows: auto;
