@@ -3,6 +3,12 @@
 	transition: opacity 300ms ease-in-out;
 	position: absolute;
 	z-index: 1000;
+	background-color: rgba(255, 255, 255, 0.15) !important;
+	color: #ffffff !important;
+}
+
+.bookmark-header-wrapper h2 {
+	color: #ffffff;
 }
 
 .ReactModal__Body--open {
@@ -20,9 +26,13 @@
 .ReactModal__Content {
 	max-width: 900px;
 	margin: 0 auto;
-	border-radius: 20px !important;
 	padding: 20px;
 	/* overflow: hidden; */
+	background: var(--clear-bg-color-hover) !important;
+	color: #ffffff !important;
+	box-shadow: var(--box-shadow);
+	backdrop-filter: var(--blur-filter);
+	border: None !important;
 }
 
 .bookmark-container {
@@ -32,12 +42,11 @@
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 	align-items: center;
+	margin-top: 50px;
 }
 
 .bookmark-header-wrapper {
 	color: #000;
-	display: flex;
-	align-items: center;
 }
 
 .bookmark-header-wrapper h2 {
@@ -45,17 +54,17 @@
 	justify-content: flex-end;
 }
 
-.clear-bookmak {
+.clear-bookmark {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: center;
 	flex-grow: 1;
 }
 
-.clear-bookmak button {
+.clear-bookmark button {
 	background: none;
 	border: none;
 	text-decoration: underline;
-	color: #000;
+	color: #ffffff;
 	cursor: pointer;
 }
 

@@ -14,7 +14,7 @@ const PlaylistRecommendation = ({ weather }) => {
 	return (
 		<div>
 			<div
-				style={{ padding: 10 }}
+				style={{ padding: 10, marginBottom: 50 }}
 				dangerouslySetInnerHTML={{
 					__html:
 						'<iframe style="border-radius:12px"\n' +

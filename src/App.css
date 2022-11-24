@@ -3,7 +3,6 @@
 	--clear-bg-color-hover: rgba(0, 0, 0, 0.5);
 	--box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
 	--blur-filter: blur(5.5px);
-	--text-color: #ffffff;
 }
 
 * {
@@ -14,9 +13,10 @@
 }
 
 body {
-	color: white;
+	color: #ffffff;
 	text-align: center;
 	background-color: #133667;
+	overflow-x: hidden;
 }
 
 input {
@@ -52,6 +52,10 @@ h5 {
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
+}
+
+#location-label {
+	margin-top: 50px;
 }
 
 .main-div__container {
@@ -139,8 +143,4 @@ video {
 
 .suggested-section {
 	margin-top: 50px;
-}
-
-h3 {
-	color: #133667;
 }

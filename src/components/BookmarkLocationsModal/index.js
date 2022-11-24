@@ -47,10 +47,10 @@ const BookmarkedLocationsModal = ({ isOpen, closeModal, clearBookmarks, ...rest 
 		>
 			<Scrollbars className="custom-scrollbar" autoHide autoHideTimeout={500} autoHideDuration={200}>
 				<div className="bookmark-header-wrapper">
-					<h2>My Bookmarks</h2>
+					<h2>Saved Locations</h2>
 
 					{bookmarkedLocations.length > 0 ? (
-						<div className="clear-bookmak">
+						<div className="clear-bookmark">
 							<button onClick={handleClearBookmarks}>Clear Bookmarks</button>
 						</div>
 					) : null}
@@ -63,7 +63,7 @@ const BookmarkedLocationsModal = ({ isOpen, closeModal, clearBookmarks, ...rest 
 						})
 					) : (
 						<div className="empty-bookmark">
-							<h3>You have no bookmarked location.</h3>
+							<h3>No saved locations.</h3>
 						</div>
 					)}
 				</div>

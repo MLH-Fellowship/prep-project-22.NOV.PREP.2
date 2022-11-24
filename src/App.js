@@ -83,7 +83,6 @@ function App() {
 			);
 	}, [city]);
 
-	// For vids
 	const weather = (weatherType) => {
 		switch (weatherType) {
 			case 'Rain':
@@ -181,7 +180,6 @@ function App() {
 					<Navbar changeUnit={degree} setChangeUnit={setDegree} />
 					<main className="main-div" id={weather(weatherType)}>
 						<div className="main-div__container">
-							{/* <h2>Enter a city below 👇</h2> */}
 							<div className="search-bar-items">
 								<Autocomplete
 									changeCity={city}
@@ -198,7 +196,9 @@ function App() {
 								<Bookmark city={city}> </Bookmark>
 							</div>
 
-							<h1 className="section-heading">{label}</h1>
+							<h1 className="section-heading" id="location-label">
+								{label ? label : city}
+							</h1>
 							<section id="mapAndWeathercard">
 								<MainWeatherCard data={cWeatherData} changeUnit={degree} />
 								<MapContainer
@@ -226,24 +226,25 @@ function App() {
 								<Box className="box" itemType="things" weather={cWeatherData.weather[0].main} />
 							</section>
 
+							<section>
+								<h2 className="section-heading">Activities to do 🙆🏻‍♂️</h2>
+								<Box itemType="activities" weather={cWeatherData.weather[0].main} />
+							</section>
+
 							<section class="suggested-section">
 								<h2 className="section-heading">Food to eat 😋</h2>
 								<Box itemType="food" weather={cWeatherData.weather[0].main} />
-							</section>
-
-							<section>
-								<h2 className="section-heading">Acitivities to do 🙆🏻‍♂️</h2>
-								<Box itemType="activities" weather={cWeatherData.weather[0].main} />
 							</section>
 
 							<section class="suggested-section">
 								<h2 className="section-heading">Songs to listen to 🎶</h2>
 								<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
 							</section>
-							<Footer />
+
 							<video src={weather(weatherType)} autoPlay loop muted></video>
 						</div>
 					</main>
+					<Footer />
 				</div>
 			</BookmarkProvider>
 		);
