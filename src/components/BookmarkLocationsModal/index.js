@@ -12,7 +12,6 @@ const BookmarkedLocationsModal = ({ isOpen, closeModal, clearBookmarks, ...rest 
 
 	useEffect(() => {
 		const stringedBookmarks = localStorage.getItem('BookmarkedLocations');
-		console.log(stringedBookmarks);
 		if (stringedBookmarks) {
 			setBookmarkedLocation(JSON.parse(stringedBookmarks));
 		} else {
