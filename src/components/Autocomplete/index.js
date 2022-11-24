@@ -27,11 +27,11 @@ const Autocomplete = ({ setChangeCity, update, deg, setChangeLabel }) => {
 	let styling = {
 		backgroundColor: 'rgba(0, 0, 0, 0.5)',
 		width: 400,
-		margin: '0 auto',
+		margin: '0',
 		borderRadius: '50px',
 		fontSize: '5.5rem',
-		marginBottom: '3rem',
 		boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.5)',
+		zIndex: 999,
 	};
 
 	return (

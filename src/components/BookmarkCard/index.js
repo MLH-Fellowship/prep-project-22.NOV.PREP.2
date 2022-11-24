@@ -9,9 +9,6 @@ const BookmarkCard = ({ place, useFahrenheit }) => {
 	const [icon, setIcon] = useState('');
 	const [description, setDescription] = useState('');
 	const [temperature, setTemperature] = useState('');
-	const [weekly, setWeekly] = useState([]);
-	const [minTemp, setminTemp] = useState([]);
-	const [maxTemp, setmaxTemp] = useState([]);
 	const [weatherCondition, setWeather] = useState('Clear');
 
 	function capitalizeFirstLetter(string) {
@@ -26,16 +23,12 @@ const BookmarkCard = ({ place, useFahrenheit }) => {
 				`${BASE_URL}weather?q=${place}&units=${unit}&appid=${process.env.REACT_APP_APIKEY}`,
 			);
 
-			console.log(data);
-
 			const { coord } = data; //long lat
 			const { lat, lon } = coord;
 
 			let oneApiData = await axios.get(
 				`${BASE_URL}onecall?lat=${lat}&lon=${lon}&units=${unit}&appid=${process.env.REACT_APP_APIKEY}`,
 			);
-
-			console.log(oneApiData.data);
 
 			oneApiData = oneApiData.data;
 			const { current } = oneApiData;
@@ -54,31 +47,6 @@ const BookmarkCard = ({ place, useFahrenheit }) => {
 			const requiredDays = [];
 			const date = new Date().getDay();
 			for (let i = date; i < date + 5; i++) requiredDays.push((i + 1) % 7);
-
-			const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
-			setWeekly(
-				requiredDays.map((idx) => {
-					return days[idx];
-				}),
-			);
-
-			const daily = oneApiData.daily;
-			const filteredDailyData = daily.filter((ele, idx) => {
-				return idx < 5;
-			});
-
-			setminTemp(
-				filteredDailyData.map((dailyObject, idx) => {
-					return dailyObject.temp.min;
-				}),
-			);
-
-			setmaxTemp(
-				filteredDailyData.map((dailyObject, idx) => {
-					return dailyObject.temp.max;
-				}),
-			);
 		}
 
 		getDetails();
@@ -87,37 +55,25 @@ const BookmarkCard = ({ place, useFahrenheit }) => {
 	return (
 		<div className="bookmarkCard">
 			<div className="bookmarkCard-fav">
-				<h1>{capitalizeFirstLetter(place)}</h1>
-				<h3 className="head-fav">
-					{capitalizeFirstLetter(description)}
-					<br />
-					<span>
-						Wind {Math.floor(wind).toPrecision(3) + ' m/s'} <span className="dot">•</span> Humidity {humidity}%
-					</span>
-				</h3>
+				<h3>{capitalizeFirstLetter(place)}</h3>
+
 				<div className="bookmarkCard-temp">
-					<h1 className="h1-heading">{Math.floor(temperature).toPrecision(4) + (useFahrenheit ? ' °F' : ' °C')}</h1>
 					<div className="image">
 						<img src={`http://openweathermap.org/img/w/${icon}.png`} className="imageicon" alt="icon" />
 					</div>
+					<h3>{Math.floor(temperature).toPrecision(4) + (useFahrenheit ? ' °F' : ' °C')}</h3>
 				</div>
-				<table className="bookmarkCard-table">
-					<tr>
-						{weekly.map((day) => {
-							return <td>{day}</td>;
-						})}
-					</tr>
-					<tr>
-						{minTemp.map((temp) => {
-							return <td>{Math.floor(temp).toPrecision(2) + (useFahrenheit ? ' °F' : ' °C')}</td>;
-						})}
-					</tr>
-					<tr>
-						{maxTemp.map((temp) => {
-							return <td>{Math.floor(temp).toPrecision(2) + (useFahrenheit ? ' °F' : ' °C')}</td>;
-						})}
-					</tr>
-				</table>
+				<h4>{capitalizeFirstLetter(description)}</h4>
+				<div className="wind-humidity-container">
+					<div>
+						<h5>Wind</h5>
+						<h5>{Math.floor(wind).toPrecision(3) + ' m/s'}</h5>
+					</div>
+					<div>
+						<h5>Humidity </h5>
+						<h5>{humidity}%</h5>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

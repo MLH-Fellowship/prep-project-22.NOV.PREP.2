@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './App.css';
 import { useFetch } from './hooks/useFetch';
 import DailyForecast from './components/DailyForecast';
@@ -13,6 +13,7 @@ import Autocomplete from './components/Autocomplete';
 import Footer from './components/Footer';
 import Bookmark from './components/Bookmark';
 import { BookmarkProvider } from './helpers/context/bookmark';
+import alanBtn from '@alan-ai/alan-sdk-web';
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -34,7 +35,6 @@ function App() {
 	let timer,
 		timeoutVal = 1000;
 	const updateUrls = (city, degree) => {
-		console.log(degree);
 		setCWeatherUrl(
 			`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${degree}&appid=${process.env.REACT_APP_APIKEY}`,
 		);
@@ -83,7 +83,6 @@ function App() {
 			);
 	}, [city]);
 
-	// For vids
 	const weather = (weatherType) => {
 		switch (weatherType) {
 			case 'Rain':
@@ -165,6 +164,47 @@ function App() {
 		}
 	}, [forecastData]);
 
+	function sendDataToAlan(city) {
+		fetch(
+			'https://api.openweathermap.org/data/2.5/weather?q=' +
+				city +
+				'&units=metric&appid=' +
+				process.env.REACT_APP_APIKEY,
+		)
+			.then((res) => res.json())
+			.then(
+				(result) => {
+					if (result['cod'] !== 200) {
+						setIsLoaded(false);
+						setError(result);
+					} else {
+						alanBtnRef.btnInstance.callProjectApi('readWeather', result, function (error, result) {});
+					}
+				},
+				(error) => {
+					setIsLoaded(false);
+					setError(error);
+					setWeatherType(error);
+				},
+			);
+	}
+
+	const alanBtnRef = useRef({}).current;
+	// Adding the Alan button
+	useEffect(() => {
+		alanBtnRef.btnInstance = alanBtn({
+			key: process.env.REACT_APP_ALANAPI,
+			onCommand: (commandData) => {
+				if (commandData.command === 'searchCity') {
+					updateUrls(commandData.city, degree);
+				}
+				if (commandData.command === 'weatherData') {
+					sendDataToAlan(commandData.city);
+				}
+			},
+		});
+	}, []);
+
 	if (cWeatherError || forecastError) {
 		return <div>Error: {cWeatherError.message || forecastError.message}</div>;
 	} else if (cWeatherLoading || forecastLoading || cWeatherData == null || forecastData == null) {
@@ -181,7 +221,6 @@ function App() {
 					<Navbar changeUnit={degree} setChangeUnit={setDegree} />
 					<main className="main-div" id={weather(weatherType)}>
 						<div className="main-div__container">
-							{/* <h2>Enter a city below 👇</h2> */}
 							<div className="search-bar-items">
 								<Autocomplete
 									changeCity={city}
@@ -198,7 +237,9 @@ function App() {
 								<Bookmark city={city}> </Bookmark>
 							</div>
 
-							<h1 className="section-heading">{label}</h1>
+							<h1 className="section-heading" id="location-label">
+								{label ? label : city}
+							</h1>
 							<section id="mapAndWeathercard">
 								<MainWeatherCard data={cWeatherData} changeUnit={degree} />
 								<MapContainer
@@ -226,24 +267,25 @@ function App() {
 								<Box className="box" itemType="things" weather={cWeatherData.weather[0].main} />
 							</section>
 
+							<section>
+								<h2 className="section-heading">Activities to do 🙆🏻‍♂️</h2>
+								<Box itemType="activities" weather={cWeatherData.weather[0].main} />
+							</section>
+
 							<section class="suggested-section">
 								<h2 className="section-heading">Food to eat 😋</h2>
 								<Box itemType="food" weather={cWeatherData.weather[0].main} />
-							</section>
-
-							<section>
-								<h2 className="section-heading">Acitivities to do 🙆🏻‍♂️</h2>
-								<Box itemType="activities" weather={cWeatherData.weather[0].main} />
 							</section>
 
 							<section class="suggested-section">
 								<h2 className="section-heading">Songs to listen to 🎶</h2>
 								<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
 							</section>
-							<Footer />
+
 							<video src={weather(weatherType)} autoPlay loop muted></video>
 						</div>
 					</main>
+					<Footer />
 				</div>
 			</BookmarkProvider>
 		);

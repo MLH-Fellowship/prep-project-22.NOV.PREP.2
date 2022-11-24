@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/img/logo.png';
+import logo from '../../assets/img/web-logo.png';
 import Toggle from 'react-toggle';
 import '../../assets/css/Navbar.css';
 import { useBookmarkContext } from '../../helpers/context/bookmark';
@@ -17,40 +17,38 @@ const Navbar = ({ changeUnit, setChangeUnit }) => {
 		<nav className="navbar">
 			<div className="navbar-container">
 				<BookmarkProvider>
-					<nav className="navbar">
-						<div className="navbar-logo">
-							<img src={logo} className="logo" alt="logo" />
-						</div>
-						<div className="navbar-btns">
-							<button
-								className="saved-locations-btn nav-item"
-								href="#"
-								onClick={(e) => {
-									e.preventDefault();
-									toggleBookmarkModal();
+					<div className="navbar-logo">
+						<img src={logo} className="logo" alt="logo" />
+					</div>
+					<div className="navbar-btns">
+						<button
+							className="saved-locations-btn nav-item"
+							href="#"
+							onClick={(e) => {
+								e.preventDefault();
+								toggleBookmarkModal();
+							}}
+						>
+							Saved Locations
+						</button>
+						<div className="toggle-btn nav-item">
+							<span>°C </span>
+							<Toggle
+								defaultChecked={changeUnit === 'imperial'}
+								icons={false}
+								onChange={(event) => {
+									event.target.checked ? setChangeUnit('imperial') : setChangeUnit('metric');
 								}}
-							>
-								Saved Locations
-							</button>
-							<div className="toggle-btn nav-item">
-								<span>°C </span>
-								<Toggle
-									defaultChecked={changeUnit === 'imperial'}
-									icons={false}
-									onChange={(event) => {
-										event.target.checked ? setChangeUnit('imperial') : setChangeUnit('metric');
-									}}
-									className="unstyled"
-								/>
-								<span> °F</span>
-							</div>
+								className="unstyled"
+							/>
+							<span> °F</span>
 						</div>
-						<div className="navbar-hamburger" onClick={hamburgerClicked}>
-							<span className="bar"></span>
-							<span className="bar"></span>
-							<span className="bar"></span>
-						</div>
-					</nav>
+					</div>
+					<div className="navbar-hamburger" onClick={hamburgerClicked}>
+						<span className="bar"></span>
+						<span className="bar"></span>
+						<span className="bar"></span>
+					</div>
 				</BookmarkProvider>
 			</div>
 		</nav>

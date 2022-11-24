@@ -2,7 +2,6 @@ import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { useState } from 'react';
 
 const MapContainer = ({ coord, setCWeatherUrl, setForecastUrl }) => {
-	console.log(coord);
 	const updateWidth = () => {
 		if (window.innerWidth < 800) {
 			return 90;
@@ -13,7 +12,7 @@ const MapContainer = ({ coord, setCWeatherUrl, setForecastUrl }) => {
 	const containerStyle = {
 		width: `${updateWidth()}%`,
 		height: '300px',
-		zIndex: '-1',
+		// zIndex: '-1',
 		boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
 	};
 
