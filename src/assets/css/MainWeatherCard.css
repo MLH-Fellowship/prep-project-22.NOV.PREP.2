@@ -9,9 +9,8 @@ h3 {
 	padding: 2px;
 }
 
-.container {
+.main-weather-card-container {
 	width: 50%;
-	z-index: -1;
 }
 
 .card {
@@ -28,7 +27,6 @@ h3 {
 }
 
 .card:hover {
-	transform: scale(1.1);
 	background: var(--clear-bg-color-hover);
 }
 
@@ -70,7 +68,7 @@ h3 {
 		width: 90%;
 	}
 
-	.container {
+	.main-weather-card-container {
 		display: flex;
 		justify-content: center;
 		align-content: center;
