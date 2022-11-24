@@ -34,6 +34,7 @@ function App() {
 	let timer,
 		timeoutVal = 1000;
 	const updateUrls = (city, degree) => {
+		console.log(degree);
 		setCWeatherUrl(
 			`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${degree}&appid=${process.env.REACT_APP_APIKEY}`,
 		);
@@ -51,7 +52,7 @@ function App() {
 		if (city) {
 			window.clearTimeout(timer);
 			timer = window.setTimeout(() => {
-				updateUrls(city);
+				updateUrls(city, degree);
 			}, timeoutVal);
 		}
 	};
