@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './App.css';
 import { useFetch } from './hooks/useFetch';
 import DailyForecast from './components/DailyForecast';
@@ -13,6 +13,7 @@ import Autocomplete from './components/Autocomplete';
 import Footer from './components/Footer';
 import Bookmark from './components/Bookmark';
 import { BookmarkProvider } from './helpers/context/bookmark';
+import alanBtn from '@alan-ai/alan-sdk-web';
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -34,7 +35,6 @@ function App() {
 	let timer,
 		timeoutVal = 1000;
 	const updateUrls = (city, degree) => {
-		console.log(degree);
 		setCWeatherUrl(
 			`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${degree}&appid=${process.env.REACT_APP_APIKEY}`,
 		);
@@ -163,6 +163,55 @@ function App() {
 			groupDataByDate();
 		}
 	}, [forecastData]);
+
+	function sendDataToAlan(city) {
+		fetch(
+			'https://api.openweathermap.org/data/2.5/weather?q=' +
+				city +
+				'&units=metric&appid=' +
+				process.env.REACT_APP_APIKEY,
+		)
+			.then((res) => res.json())
+			.then(
+				(result) => {
+					if (result['cod'] !== 200) {
+						setIsLoaded(false);
+						setError(result);
+					} else {
+						alanBtnRef.btnInstance.callProjectApi('readWeather', result, function (error, result) {});
+					}
+				},
+				(error) => {
+					setIsLoaded(false);
+					setError(error);
+					setWeatherType(error);
+				},
+			);
+	}
+
+	const alanBtnRef = useRef({}).current;
+	// Adding the Alan button
+	useEffect(() => {
+		alanBtnRef.btnInstance = alanBtn({
+			key: process.env.REACT_APP_ALANAPI,
+			onCommand: (commandData) => {
+				if (commandData.command === 'searchCity') {
+					updateUrls(commandData.city, degree);
+				}
+				if (commandData.command === 'weatherData') {
+					sendDataToAlan(commandData.city);
+				}
+			},
+			onButtonState: async function (status) {
+				if (status === 'LISTEN') {
+					if (!this.greetingWasSaid) {
+						await alanBtnRef.btnInstance.callProjectApi('greeting', {}, function (error, result) {});
+						this.greetingWasSaid = true;
+					}
+				}
+			},
+		});
+	}, []);
 
 	if (cWeatherError || forecastError) {
 		return <div>Error: {cWeatherError.message || forecastError.message}</div>;
