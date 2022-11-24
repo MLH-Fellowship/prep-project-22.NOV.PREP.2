@@ -40,6 +40,9 @@ const HourlyForecast = ({ data, changeUnit }) => {
 				position: 'top',
 				labels: {
 					color: 'white',
+					font: {
+						size: 20,
+					},
 				},
 			},
 		},
@@ -49,6 +52,9 @@ const HourlyForecast = ({ data, changeUnit }) => {
 					display: true,
 					color: 'white',
 					text: `Temperature °${changeUnit === 'metric' ? 'C' : 'F'}`,
+					font: {
+						size: 20,
+					},
 				},
 				grid: {
 					borderColor: 'white',
@@ -57,6 +63,9 @@ const HourlyForecast = ({ data, changeUnit }) => {
 				ticks: {
 					color: 'white',
 					beginAtZero: true,
+					font: {
+						size: 20,
+					},
 				},
 			},
 			x: {
@@ -64,6 +73,9 @@ const HourlyForecast = ({ data, changeUnit }) => {
 					display: true,
 					color: 'white',
 					text: 'Hours',
+					font: {
+						size: 20,
+					},
 				},
 				grid: {
 					borderColor: 'white',
@@ -72,6 +84,9 @@ const HourlyForecast = ({ data, changeUnit }) => {
 				ticks: {
 					color: 'white',
 					beginAtZero: true,
+					font: {
+						size: 20,
+					},
 				},
 			},
 		},

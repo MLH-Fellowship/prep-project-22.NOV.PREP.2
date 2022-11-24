@@ -2,6 +2,7 @@
 	margin: 0;
 	padding: 0;
 }
+
 .icon {
 	cursor: pointer;
 }
@@ -10,27 +11,26 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	gap: 20px;
+	margin-bottom: 50px;
 }
+
 .weatherCard {
-	padding-left: 10px;
-	padding-right: 10px;
-	background-color: white;
-	margin: 10px;
-	padding: 10px;
-	height: 20%;
-	color: black;
+	background-color: var(--clear-bg-color);
+	padding: 20px;
+	width: 500px;
 	cursor: pointer;
-	border-radius: 5px;
-	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+	box-shadow: var(--box-shadow);
+	backdrop-filter: var(--blur-filter);
+	transition: all 0.5s;
 }
 
 .weatherCard:hover {
-	background: linear-gradient(#133667, #0d9de3);
-	color: white;
+	background: var(--clear-bg-color-hover);
 }
+
 .weatherCard.active {
-	background: linear-gradient(#133667, #0d9de3);
-	color: white;
+	background: var(--clear-bg-color-hover);
 }
 
 .weatherCard > div {

@@ -9,12 +9,14 @@ import Box from './components/RequiredThings/Box';
 import Loader from './components/Loader';
 import MapContainer from './components/Map';
 import PlaylistRecommendation from './components/PlaylistRecommendation';
+import Autocomplete from './components/Autocomplete';
 import Footer from './components/Footer';
 import Bookmark from './components/Bookmark';
 import { BookmarkProvider } from './helpers/context/bookmark';
 
 function App() {
 	const [city, setCity] = useState('New York City');
+	const [label, setLabel] = useState('');
 	const [weatherType, setWeatherType] = useState('');
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [error, setError] = useState(null);
@@ -64,8 +66,6 @@ function App() {
 			.then((res) => res.json())
 			.then(
 				(result) => {
-					console.log(result);
-
 					if (result['cod'] !== 200) {
 						setIsLoaded(false);
 						setError(result);
@@ -83,22 +83,24 @@ function App() {
 			);
 	}, [city]);
 
+	// For vids
 	const weather = (weatherType) => {
 		switch (weatherType) {
 			case 'Rain':
-				return 'rainy';
+				return 'https://joy.videvo.net/videvo_files/video/free/2022-01/large_watermarked/211212_07_Jakarta_4k_013_preview.mp4';
 			case 'Clouds':
-				return 'cloudy';
+				return 'https://joy.videvo.net/videvo_files/video/free/2019-12/large_watermarked/190915_B_01_Timelapse%20Danang_05_preview.mp4';
 			case 'Snow':
-				return 'snowy';
+				return 'https://joy.videvo.net/videvo_files/video/free/2021-01/large_watermarked/210108_01_Snowy%20Woods_4k_003_preview.mp4';
 			case 'Clear':
-				return 'clear';
+				return 'https://joy.videvo.net/videvo_files/video/free/2019-03/large_watermarked/181015_07a_Hollywood_UHD_004_preview.mp4';
 			case 'Haze':
-				return 'haze';
+				return 'https://joy.videvo.net/videvo_files/video/free/2019-04/large_watermarked/190408_01_Alaska_Landscapes1_09_preview.mp4';
 			default:
-				return 'default';
+				return 'https://joy.videvo.net/videvo_files/video/free/2019-03/large_watermarked/181015_07a_Hollywood_UHD_004_preview.mp4';
 		}
 	};
+
 	const findLocation = () => {
 		navigator.geolocation.getCurrentPosition((position) => {
 			setCWeatherUrl(
@@ -173,69 +175,73 @@ function App() {
 		);
 	} else {
 		return (
+			// <div className={weather(weatherType)}>
 			<BookmarkProvider>
 				<div className={weather(weatherType)}>
 					<Navbar changeUnit={degree} setChangeUnit={setDegree} />
-					<main className="main-div">
-						<h2>Enter a city below 👇</h2>
-						<div className="search-bar">
+					<main className="main-div" id={weather(weatherType)}>
+						<div className="main-div__container">
+							{/* <h2>Enter a city below 👇</h2> */}
 							<div className="search-bar-items">
-								<input
-									type="text"
+								<Autocomplete
+									changeCity={city}
+									setChangeCity={setCity}
+									changeLabel={label}
+									setChangeLabel={setLabel}
+									update={updateUrls}
+									deg={degree}
 									value={city}
 									onChange={(e) => setCity(e.currentTarget.value)}
 									onKeyDown={() => handleKeyDown()}
 									onKeyUp={() => handleKeyUp()}
 								/>
-							</div>
-							<div className="search-bar-items">
 								<Bookmark city={city}> </Bookmark>
 							</div>
-						</div>
 
-						<section id="mapAndWeathercard">
-							<MainWeatherCard data={cWeatherData} changeUnit={degree} />
-							<MapContainer
-								setCWeatherUrl={setCWeatherUrl}
-								setForecastUrl={setForecastUrl}
-								coord={cWeatherData.coord}
-							/>
-						</section>
+							<h1 className="section-heading">{label}</h1>
+							<section id="mapAndWeathercard">
+								<MainWeatherCard data={cWeatherData} changeUnit={degree} />
+								<MapContainer
+									setCWeatherUrl={setCWeatherUrl}
+									setForecastUrl={setForecastUrl}
+									coord={cWeatherData.coord}
+								/>
+							</section>
 
-						<section>
-							<DailyForecast
-								data={forecastDataGrouped}
-								setActiveWeatherCard={setActiveWeatherCard}
-								activeWeatherCard={activeWeatherCard}
-								changeUnit={degree}
-							/>
-						</section>
+							<section>
+								<DailyForecast
+									data={forecastDataGrouped}
+									setActiveWeatherCard={setActiveWeatherCard}
+									activeWeatherCard={activeWeatherCard}
+									changeUnit={degree}
+								/>
+							</section>
 
-						<section>
-							<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} changeUnit={degree} />
-						</section>
+							<section class="suggested-section">
+								<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} changeUnit={degree} />
+							</section>
 
-						<section>
-							<p className="required-things-heading">SUGGESTED ITEMS 🎒</p>
-							<Box itemType="things" weather={cWeatherData.weather[0].main} />
-						</section>
+							<section class="suggested-section">
+								<h2 className="section-heading">Items to bring 🎒</h2>
+								<Box className="box" itemType="things" weather={cWeatherData.weather[0].main} />
+							</section>
 
-						<section>
-							<p className="required-things-heading">SUGGESTED FOOD 😋</p>
-							<Box itemType="food" weather={cWeatherData.weather[0].main} />
-						</section>
+							<section class="suggested-section">
+								<h2 className="section-heading">Food to eat 😋</h2>
+								<Box itemType="food" weather={cWeatherData.weather[0].main} />
+							</section>
 
-						<section>
-							<p className="required-things-heading">SUGGESTED ACTIVITIES 🙆🏻‍♂️</p>
-							<Box itemType="activities" weather={cWeatherData.weather[0].main} />
-						</section>
+							<section>
+								<h2 className="section-heading">Acitivities to do 🙆🏻‍♂️</h2>
+								<Box itemType="activities" weather={cWeatherData.weather[0].main} />
+							</section>
 
-						<section>
-							<p className="required-things-heading">SUGGESTED SONGS 🎶</p>
-							<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
-						</section>
-						<div className="App">
-						<Footer />
+							<section class="suggested-section">
+								<h2 className="section-heading">Songs to listen to 🎶</h2>
+								<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
+							</section>
+							<Footer />
+							<video src={weather(weatherType)} autoPlay loop muted></video>
 						</div>
 					</main>
 				</div>

@@ -54,19 +54,19 @@ const DailyForecast = ({ data, setActiveWeatherCard, activeWeatherCard, changeUn
 									src={`https://openweathermap.org/img/wn/${element.data[0]?.weather[0].icon}@2x.png`}
 									alt="weather icon"
 								/>
-								<h4>
+								<h3>
 									{element.data[0]?.main.temp} &deg; {changeUnit === 'metric' ? 'C' : 'F'}
-								</h4>
+								</h3>
 							</div>
-							<p>{element.data[0]?.weather[0].main}</p>
+							<h4>{element.data[0]?.weather[0].main}</h4>
 							<div>
 								<div>
 									<h5>Humidity</h5>
-									<p>{element.data[0]?.main.humidity}%</p>
+									<h5>{element.data[0]?.main.humidity}%</h5>
 								</div>
 								<div>
 									<h5>Wind Speed</h5>
-									<p>{element.data[0]?.wind.speed} km/j</p>
+									<h5>{element.data[0]?.wind.speed} km/j</h5>
 								</div>
 							</div>
 						</div>
