@@ -18,3 +18,8 @@
 	color: white;
 	right: 100px;
 }
+
+.bookmark {
+	float: right;
+	position: relative;
+}
