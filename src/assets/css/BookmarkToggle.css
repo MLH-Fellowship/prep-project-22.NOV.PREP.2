@@ -14,3 +14,8 @@
 	background-color: inherit;
 	border: none;
 }
+
+.bookmark {
+	float: right;
+	position: relative;
+}
