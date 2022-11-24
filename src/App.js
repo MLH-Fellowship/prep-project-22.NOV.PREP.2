@@ -9,7 +9,10 @@ import Box from './components/RequiredThings/Box';
 import Loader from './components/Loader';
 import MapContainer from './components/Map';
 import PlaylistRecommendation from './components/PlaylistRecommendation';
-import Autocomplete from './components/Autocomplete';
+import Autocomplete from './components/Autocomplete';	
+import Footer from './components/Footer';
+import Bookmark from './components/Bookmark';
+import { BookmarkProvider } from './helpers/context/bookmark';
 
 function App() {
 	const [city, setCity] = useState('New York City');
@@ -78,24 +81,6 @@ function App() {
 				},
 			);
 	}, [city]);
-
-	// If we want to use still images
-	// const weather = (weatherType) => {
-	// 	switch (weatherType) {
-	// 		case 'Rain':
-	// 			return 'rainy';
-	// 		case 'Clouds':
-	// 			return 'cloudy';
-	// 		case 'Snow':
-	// 			return 'snowy';
-	// 		case 'Clear':
-	// 			return 'clear';
-	// 		case 'Haze':
-	// 			return 'haze';
-	// 		default:
-	// 			return 'default';
-	// 	}
-	// };
 
 	// For vids
 	const weather = (weatherType) => {
@@ -190,23 +175,27 @@ function App() {
 	} else {
 		return (
 			// <div className={weather(weatherType)}>
+			<BookmarkProvider>
 			<div className={weather(weatherType)}>
 				<Navbar changeUnit={degree} setChangeUnit={setDegree} />
 				<main className="main-div" id={weather(weatherType)}>
 					<div className="main-div__container">
 						{/* <h2>Enter a city below 👇</h2> */}
-						<Autocomplete
-							changeCity={city}
-							setChangeCity={setCity}
-							changeLabel={label}
-							setChangeLabel={setLabel}
-							update={updateUrls}
-							deg={degree}
-							value={city}
-							onChange={(e) => setCity(e.currentTarget.value)}
-							onKeyDown={() => handleKeyDown()}
-							onKeyUp={() => handleKeyUp()}
-						/>
+						<div className="search-bar-items">
+							<Autocomplete
+								changeCity={city}
+								setChangeCity={setCity}
+								changeLabel={label}
+								setChangeLabel={setLabel}
+								update={updateUrls}
+								deg={degree}
+								value={city}
+								onChange={(e) => setCity(e.currentTarget.value)}
+								onKeyDown={() => handleKeyDown()}
+								onKeyUp={() => handleKeyUp()}
+							/>
+							<Bookmark city={city}> </Bookmark>
+						</div>
 
 						<h1 className="section-heading">{label}</h1>
 						<section id="mapAndWeathercard">
@@ -241,14 +230,22 @@ function App() {
 							<Box itemType="food" weather={cWeatherData.weather[0].main} />
 						</section>
 
+						<section>
+							<h2 className="section-heading">Acitivities to do 🙆🏻‍♂️</h2>
+							<Box itemType="activities" weather={cWeatherData.weather[0].main} />
+						</section>
+
 						<section class="suggested-section">
 							<h2 className="section-heading">Songs to listen to 🎶</h2>
 							<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
 						</section>
+						<Footer />
+						<video src={weather(weatherType)} autoPlay loop muted></video>
+							
 					</div>
 				</main>
-				<video src={weather(weatherType)} autoPlay loop muted></video>
 			</div>
+		</BookmarkProvider>
 		);
 	}
 }
