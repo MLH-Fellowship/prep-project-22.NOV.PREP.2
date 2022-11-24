@@ -26,12 +26,16 @@ const BookmarkCard = ({ place, useFahrenheit }) => {
 				`${BASE_URL}weather?q=${place}&units=${unit}&appid=${process.env.REACT_APP_APIKEY}`,
 			);
 
+			console.log(data);
+
 			const { coord } = data; //long lat
 			const { lat, lon } = coord;
 
 			let oneApiData = await axios.get(
 				`${BASE_URL}onecall?lat=${lat}&lon=${lon}&units=${unit}&appid=${process.env.REACT_APP_APIKEY}`,
 			);
+
+			console.log(oneApiData.data);
 
 			oneApiData = oneApiData.data;
 			const { current } = oneApiData;

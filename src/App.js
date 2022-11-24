@@ -9,7 +9,7 @@ import Box from './components/RequiredThings/Box';
 import Loader from './components/Loader';
 import MapContainer from './components/Map';
 import PlaylistRecommendation from './components/PlaylistRecommendation';
-import Autocomplete from './components/Autocomplete';	
+import Autocomplete from './components/Autocomplete';
 import Footer from './components/Footer';
 import Bookmark from './components/Bookmark';
 import { BookmarkProvider } from './helpers/context/bookmark';
@@ -176,76 +176,75 @@ function App() {
 		return (
 			// <div className={weather(weatherType)}>
 			<BookmarkProvider>
-			<div className={weather(weatherType)}>
-				<Navbar changeUnit={degree} setChangeUnit={setDegree} />
-				<main className="main-div" id={weather(weatherType)}>
-					<div className="main-div__container">
-						{/* <h2>Enter a city below 👇</h2> */}
-						<div className="search-bar-items">
-							<Autocomplete
-								changeCity={city}
-								setChangeCity={setCity}
-								changeLabel={label}
-								setChangeLabel={setLabel}
-								update={updateUrls}
-								deg={degree}
-								value={city}
-								onChange={(e) => setCity(e.currentTarget.value)}
-								onKeyDown={() => handleKeyDown()}
-								onKeyUp={() => handleKeyUp()}
-							/>
-							<Bookmark city={city}> </Bookmark>
+				<div className={weather(weatherType)}>
+					<Navbar changeUnit={degree} setChangeUnit={setDegree} />
+					<main className="main-div" id={weather(weatherType)}>
+						<div className="main-div__container">
+							{/* <h2>Enter a city below 👇</h2> */}
+							<div className="search-bar-items">
+								<Autocomplete
+									changeCity={city}
+									setChangeCity={setCity}
+									changeLabel={label}
+									setChangeLabel={setLabel}
+									update={updateUrls}
+									deg={degree}
+									value={city}
+									onChange={(e) => setCity(e.currentTarget.value)}
+									onKeyDown={() => handleKeyDown()}
+									onKeyUp={() => handleKeyUp()}
+								/>
+								<Bookmark city={city}> </Bookmark>
+							</div>
+
+							<h1 className="section-heading">{label}</h1>
+							<section id="mapAndWeathercard">
+								<MainWeatherCard data={cWeatherData} changeUnit={degree} />
+								<MapContainer
+									setCWeatherUrl={setCWeatherUrl}
+									setForecastUrl={setForecastUrl}
+									coord={cWeatherData.coord}
+								/>
+							</section>
+
+							<section>
+								<DailyForecast
+									data={forecastDataGrouped}
+									setActiveWeatherCard={setActiveWeatherCard}
+									activeWeatherCard={activeWeatherCard}
+									changeUnit={degree}
+								/>
+							</section>
+
+							<section class="suggested-section">
+								<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} changeUnit={degree} />
+							</section>
+
+							<section class="suggested-section">
+								<h2 className="section-heading">Items to bring 🎒</h2>
+								<Box className="box" itemType="things" weather={cWeatherData.weather[0].main} />
+							</section>
+
+							<section class="suggested-section">
+								<h2 className="section-heading">Food to eat 😋</h2>
+								<Box itemType="food" weather={cWeatherData.weather[0].main} />
+							</section>
+
+							<section>
+								<h2 className="section-heading">Acitivities to do 🙆🏻‍♂️</h2>
+								<Box itemType="activities" weather={cWeatherData.weather[0].main} />
+							</section>
+
+							<section class="suggested-section">
+								<h2 className="section-heading">Songs to listen to 🎶</h2>
+								<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
+							</section>
+							<Footer />
+							<video src={weather(weatherType)} autoPlay loop muted></video>
 						</div>
-
-						<h1 className="section-heading">{label}</h1>
-						<section id="mapAndWeathercard">
-							<MainWeatherCard data={cWeatherData} changeUnit={degree} />
-							<MapContainer
-								setCWeatherUrl={setCWeatherUrl}
-								setForecastUrl={setForecastUrl}
-								coord={cWeatherData.coord}
-							/>
-						</section>
-
-						<section>
-							<DailyForecast
-								data={forecastDataGrouped}
-								setActiveWeatherCard={setActiveWeatherCard}
-								activeWeatherCard={activeWeatherCard}
-								changeUnit={degree}
-							/>
-						</section>
-
-						<section class="suggested-section">
-							<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} changeUnit={degree} />
-						</section>
-
-						<section class="suggested-section">
-							<h2 className="section-heading">Items to bring 🎒</h2>
-							<Box className="box" itemType="things" weather={cWeatherData.weather[0].main} />
-						</section>
-
-						<section class="suggested-section">
-							<h2 className="section-heading">Food to eat 😋</h2>
-							<Box itemType="food" weather={cWeatherData.weather[0].main} />
-						</section>
-
-						<section>
-							<h2 className="section-heading">Acitivities to do 🙆🏻‍♂️</h2>
-							<Box itemType="activities" weather={cWeatherData.weather[0].main} />
-						</section>
-
-						<section class="suggested-section">
-							<h2 className="section-heading">Songs to listen to 🎶</h2>
-							<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
-						</section>
-						<Footer />
-						<video src={weather(weatherType)} autoPlay loop muted></video>
-							
-					</div>
-				</main>
-			</div>
-		</BookmarkProvider>
+					</main>
+				</div>
+			</BookmarkProvider>
 		);
 	}
 }
