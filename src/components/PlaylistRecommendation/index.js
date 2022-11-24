@@ -23,7 +23,7 @@ const PlaylistRecommendation = ({ weather }) => {
 						'?utm_source=generator"\n' +
 						'                width="83%" height="280" frameBorder="0" allowFullScreen=""\n' +
 						'                allow="autoplay"; clipboard-write; encrypted-media; fullscreen; picture-in-picture"\n' +
-						'                loading="lazy"></iframe>',
+						'                loading="lazy" title="Song Recommendation for your weather!"></iframe>',
 				}}
 			/>
 		</div>
