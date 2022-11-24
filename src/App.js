@@ -182,20 +182,24 @@ function App() {
 					<main className="main-div" id={weather(weatherType)}>
 						<div className="main-div__container">
 							{/* <h2>Enter a city below 👇</h2> */}
-							<div className="search-bar-items">
-								<Autocomplete
-									changeCity={city}
-									setChangeCity={setCity}
-									changeLabel={label}
-									setChangeLabel={setLabel}
-									update={updateUrls}
-									deg={degree}
-									value={city}
-									onChange={(e) => setCity(e.currentTarget.value)}
-									onKeyDown={() => handleKeyDown()}
-									onKeyUp={() => handleKeyUp()}
-								/>
-								<Bookmark city={city}> </Bookmark>
+							<div className="serch-bar">
+								<div className="search-bar-items">
+									<Autocomplete
+										changeCity={city}
+										setChangeCity={setCity}
+										changeLabel={label}
+										setChangeLabel={setLabel}
+										update={updateUrls}
+										deg={degree}
+										value={city}
+										onChange={(e) => setCity(e.currentTarget.value)}
+										onKeyDown={() => handleKeyDown()}
+										onKeyUp={() => handleKeyUp()}
+									/>
+								</div>
+								<div className="search-bar-items">
+									<Bookmark city={city}> </Bookmark>
+								</div>
 							</div>
 
 							<h1 className="section-heading">{label}</h1>

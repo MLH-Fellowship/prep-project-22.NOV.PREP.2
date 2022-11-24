@@ -30,8 +30,7 @@ const Autocomplete = ({ setChangeCity, update, deg, setChangeLabel }) => {
 		margin: '0 auto',
 		borderRadius: '50px',
 		fontSize: '5.5rem',
-		marginBottom: '3rem',
-		boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.5)',
+		boxShadow: '0 0 0px 0 rgba(0, 0, 0, 0.5)',
 	};
 
 	return (
