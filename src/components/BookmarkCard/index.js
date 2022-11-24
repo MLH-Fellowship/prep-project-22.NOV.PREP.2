@@ -23,8 +23,6 @@ const BookmarkCard = ({ place, useFahrenheit }) => {
 				`${BASE_URL}weather?q=${place}&units=${unit}&appid=${process.env.REACT_APP_APIKEY}`,
 			);
 
-			// console.log(data);
-
 			const { coord } = data; //long lat
 			const { lat, lon } = coord;
 

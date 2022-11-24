@@ -23,7 +23,6 @@ function App() {
 	const [error, setError] = useState(null);
 	const [results, setResults] = useState(null);
 	const [degree, setDegree] = useState('metric');
-	const [alanState, setAlanState] = useState('');
 
 	const [cWeatherUrl, setCWeatherUrl] = useState(
 		`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${degree}&appid=${process.env.REACT_APP_APIKEY}`,
@@ -166,7 +165,6 @@ function App() {
 	}, [forecastData]);
 
 	function sendDataToAlan(city) {
-		console.log(city);
 		fetch(
 			'https://api.openweathermap.org/data/2.5/weather?q=' +
 				city +
@@ -198,18 +196,14 @@ function App() {
 			key: process.env.REACT_APP_ALANAPI,
 			onCommand: (commandData) => {
 				if (commandData.command === 'searchCity') {
-					console.log(commandData.city);
 					updateUrls(commandData.city, degree);
-					setAlanState(commandData.city);
 				}
 				if (commandData.command === 'weatherData') {
-					console.log(commandData.city);
 					sendDataToAlan(commandData.city);
-					setAlanState(commandData.city);
 				}
 			},
 		});
-	}, [alanState]);
+	}, []);
 
 	if (cWeatherError || forecastError) {
 		return <div>Error: {cWeatherError.message || forecastError.message}</div>;
