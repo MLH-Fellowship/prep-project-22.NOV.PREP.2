@@ -13,7 +13,7 @@ const MapContainer = ({ coord, setCWeatherUrl, setForecastUrl }) => {
 	const containerStyle = {
 		width: `${updateWidth()}%`,
 		height: '300px',
-		zIndex: '-1',
+		// zIndex: '-1',
 		boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.75)',
 	};
 

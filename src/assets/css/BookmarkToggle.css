@@ -1,11 +1,13 @@
 .search-bar-items {
-	display: inline-block;
-	position: relative;
-	padding: 7px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 1rem;
+	align-items: center;
 }
 
 .search-bar {
-	margin: 20px;
+	margin: 0px !important;
 }
 
 .bookmark-btn {
@@ -13,6 +15,8 @@
 	font-size: 26px;
 	background-color: inherit;
 	border: none;
+	color: white;
+	right: 100px;
 }
 
 .bookmark {

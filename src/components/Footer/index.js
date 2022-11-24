@@ -1,13 +1,13 @@
 import '../../assets/css/Footer.css';
-import logofooter from '../../assets/img/logofinal.png';
+import logofooter from '../../assets/img/mascot-logo.png';
 import React from 'react';
 
 const Footer = () => {
 	return (
-		<footer bgColor="light" className="text-center text-lg-left">
+		<footer>
 			<div className="content">
-				<a className="footer-text">Made with ❤️ by</a>
-				<img src={logofooter} className="logofooter" alt="logo" />
+				<h3>Made with ❤️ by</h3>
+				<img src={logofooter} className="footer-logo" alt="logo" />
 			</div>
 		</footer>
 	);
