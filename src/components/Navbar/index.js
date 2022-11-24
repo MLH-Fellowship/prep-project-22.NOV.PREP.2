@@ -42,7 +42,6 @@ const Navbar = ({ changeUnit, setChangeUnit }) => {
 									}}
 									className="unstyled"
 								/>
-								<input class="react-toggle-screenreader-only" type="checkbox"></input>
 								<span> °F</span>
 							</div>
 						</div>
