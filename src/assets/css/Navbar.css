@@ -1,21 +1,26 @@
 .navbar {
 	top: 0;
 	position: fixed;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 	background: rgba(0, 0, 0, 0.3);
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 	backdrop-filter: blur(4px);
 	padding: 20px 0;
 	width: 100vw;
 	z-index: 1000;
+	display: flex;
+	justify-content: center;
+}
+
+.navbar-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 80%;
 }
 
 .navbar-btns {
 	display: flex;
 	gap: 100px;
-	margin-right: 10em;
 	align-items: center;
 }
 
@@ -43,7 +48,6 @@
 
 .logo {
 	width: 150px;
-	margin-left: 10em;
 }
 
 .navbar-hamburger {
@@ -62,7 +66,7 @@
 
 .nav-item:hover {
 	background-color: #000000;
-	transition: all 0.3s ease-in-out;
+	transition: all 0.5s;
 }
 
 /* TOGGLE BUTTON */
@@ -117,11 +121,11 @@
 }
 
 .react-toggle--checked .react-toggle-track {
-	background-color: #19ab27;
+	background-color: #0d9de3;
 }
 
 .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
-	background-color: #128d15;
+	background-color: #0d9de3;
 }
 
 .react-toggle-track-check {
@@ -189,7 +193,7 @@
 
 .react-toggle--checked .react-toggle-thumb {
 	left: 27px;
-	border-color: #19ab27;
+	border-color: #0d9de3;
 }
 
 .react-toggle--focus .react-toggle-thumb {
