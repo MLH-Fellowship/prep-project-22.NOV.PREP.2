@@ -34,6 +34,7 @@ function App() {
 	};
 	let { data: cWeatherData, error: cWeatherError, loading: cWeatherLoading } = useFetch(cWeatherUrl);
 	let { data: forecastData, error: forecastError, loading: forecastLoading } = useFetch(forecastUrl);
+	console.log(cWeatherData);
 	const handleKeyDown = () => {
 		window.clearTimeout(timer);
 	};
