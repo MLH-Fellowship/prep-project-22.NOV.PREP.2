@@ -15,7 +15,14 @@ function Box(props) {
 	return (
 		<div className="flex required-things-box">
 			{Object.keys(getRequiredMap[props.itemType][props.weather]).map((item, index) => {
-				return <Item key={index} img={getRequiredMap[props.itemType][props.weather][item]} name={item} />;
+				return (
+					<Item
+						key={index}
+						alt="Required Item Images"
+						img={getRequiredMap[props.itemType][props.weather][item]}
+						name={item}
+					/>
+				);
 			})}
 		</div>
 	);
