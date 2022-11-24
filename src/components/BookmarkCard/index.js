@@ -57,7 +57,7 @@ const BookmarkCard = ({ place, useFahrenheit }) => {
 	return (
 		<div className="bookmarkCard">
 			<div className="bookmarkCard-fav">
-				<h4>{capitalizeFirstLetter(place)}</h4>
+				<h3>{capitalizeFirstLetter(place)}</h3>
 
 				<div className="bookmarkCard-temp">
 					<div className="image">
@@ -65,7 +65,7 @@ const BookmarkCard = ({ place, useFahrenheit }) => {
 					</div>
 					<h3>{Math.floor(temperature).toPrecision(4) + (useFahrenheit ? ' °F' : ' °C')}</h3>
 				</div>
-				{capitalizeFirstLetter(description)}
+				<h4>{capitalizeFirstLetter(description)}</h4>
 				<div className="wind-humidity-container">
 					<div>
 						<h5>Wind</h5>
