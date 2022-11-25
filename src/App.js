@@ -20,7 +20,7 @@ function App() {
 	const [label, setLabel] = useState('');
 	const [degree, setDegree] = useState('metric');
 	const [{ data: cWeatherData, error: cWeatherError, loading: cWeatherLoading }, fetchWeatherData] = useFetch();
-	let [{ data: forecastData, error: forecastError, loading: forecastLoading }, fetchForeCastData] = useFetch();
+	const [{ data: forecastData, error: forecastError, loading: forecastLoading }, fetchForeCastData] = useFetch();
 	const [forecastDataGrouped, setForecastDataGrouped] = useState(null);
 	const [activeWeatherCard, setActiveWeatherCard] = useState(0);
 	let timer,
@@ -95,7 +95,7 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		if (cWeatherData != null) {
+		if (cWeatherData) {
 			setCity(cWeatherData.name);
 		}
 	}, [cWeatherData]);
@@ -177,9 +177,9 @@ function App() {
 	} else {
 		return (
 			<BookmarkProvider>
-				<div className={weather(cWeatherData.main)}>
+				<div className={weather(cWeatherData.weather[0].main)}>
 					<Navbar changeUnit={degree} setChangeUnit={setDegree} />
-					<main className="main-div" id={weather(cWeatherData.main)}>
+					<main className="main-div" id={weather(cWeatherData.weather[0].main)}>
 						<div className="main-div__container">
 							<div className="search-bar-items">
 								<Autocomplete
@@ -243,7 +243,7 @@ function App() {
 								<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
 							</section>
 
-							<video src={weather(cWeatherData.main)} autoPlay loop muted></video>
+							<video src={weather(cWeatherData.weather[0].main)} autoPlay loop muted></video>
 						</div>
 					</main>
 					<Footer />
