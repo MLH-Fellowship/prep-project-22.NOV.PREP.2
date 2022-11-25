@@ -202,6 +202,14 @@ function App() {
 					sendDataToAlan(commandData.city);
 				}
 			},
+			onButtonState: async function (status) {
+				if (status === 'LISTEN') {
+					if (!this.greetingWasSaid) {
+						await alanBtnRef.btnInstance.callProjectApi('greeting', {}, function (error, result) {});
+						this.greetingWasSaid = true;
+					}
+				}
+			},
 		});
 	}, []);
 
