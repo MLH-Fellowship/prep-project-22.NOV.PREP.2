@@ -18,32 +18,21 @@ import alanBtn from '@alan-ai/alan-sdk-web';
 function App() {
 	const [city, setCity] = useState('New York City');
 	const [label, setLabel] = useState('');
-	const [weatherType, setWeatherType] = useState('');
-	const [isLoaded, setIsLoaded] = useState(false);
-	const [error, setError] = useState(null);
-	const [results, setResults] = useState(null);
 	const [degree, setDegree] = useState('metric');
-
-	const [cWeatherUrl, setCWeatherUrl] = useState(
-		`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${degree}&appid=${process.env.REACT_APP_APIKEY}`,
-	);
-	const [forecastUrl, setForecastUrl] = useState(
-		`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${degree}&appid=${process.env.REACT_APP_APIKEY}`,
-	);
+	const [{ data: cWeatherData, error: cWeatherError, loading: cWeatherLoading }, fetchWeatherData] = useFetch();
+	const [{ data: forecastData, error: forecastError, loading: forecastLoading }, fetchForeCastData] = useFetch();
 	const [forecastDataGrouped, setForecastDataGrouped] = useState(null);
 	const [activeWeatherCard, setActiveWeatherCard] = useState(0);
 	let timer,
 		timeoutVal = 1000;
-	const updateUrls = (city, degree) => {
-		setCWeatherUrl(
+	const reFetchData = (city, degree) => {
+		fetchWeatherData(
 			`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${degree}&appid=${process.env.REACT_APP_APIKEY}`,
 		);
-		setForecastUrl(
+		fetchForeCastData(
 			`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${degree}&appid=${process.env.REACT_APP_APIKEY}`,
 		);
 	};
-	let { data: cWeatherData, error: cWeatherError, loading: cWeatherLoading } = useFetch(cWeatherUrl);
-	let { data: forecastData, error: forecastError, loading: forecastLoading } = useFetch(forecastUrl);
 
 	const handleKeyDown = () => {
 		window.clearTimeout(timer);
@@ -52,36 +41,10 @@ function App() {
 		if (city) {
 			window.clearTimeout(timer);
 			timer = window.setTimeout(() => {
-				updateUrls(city, degree);
+				reFetchData(city, degree);
 			}, timeoutVal);
 		}
 	};
-	useEffect(() => {
-		fetch(
-			'https://api.openweathermap.org/data/2.5/weather?q=' +
-				city +
-				'&units=metric&appid=' +
-				process.env.REACT_APP_APIKEY,
-		)
-			.then((res) => res.json())
-			.then(
-				(result) => {
-					if (result['cod'] !== 200) {
-						setIsLoaded(false);
-						setError(result);
-					} else {
-						setIsLoaded(true);
-						setResults(result);
-						setWeatherType(result.weather[0].main);
-					}
-				},
-				(error) => {
-					setIsLoaded(false);
-					setError(error);
-					setWeatherType(error);
-				},
-			);
-	}, [city]);
 
 	const weather = (weatherType) => {
 		switch (weatherType) {
@@ -102,7 +65,7 @@ function App() {
 
 	const findLocation = () => {
 		navigator.geolocation.getCurrentPosition((position) => {
-			setCWeatherUrl(
+			fetchWeatherData(
 				'https://api.openweathermap.org/data/2.5/weather?lat=' +
 					position.coords.latitude +
 					'&lon=' +
@@ -111,7 +74,7 @@ function App() {
 					process.env.REACT_APP_APIKEY,
 			);
 
-			setForecastUrl(
+			fetchForeCastData(
 				'https://api.openweathermap.org/data/2.5/forecast?lat=' +
 					position.coords.latitude +
 					'&lon=' +
@@ -126,18 +89,19 @@ function App() {
 		if (navigator.geolocation) {
 			findLocation();
 		} else {
-			alert('Geolocation is not supported by this browser.');
+			reFetchData(city, degree);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
-		if (cWeatherData != null) {
+		if (cWeatherData) {
 			setCity(cWeatherData.name);
 		}
 	}, [cWeatherData]);
 
 	useEffect(() => {
-		updateUrls(city, degree);
+		reFetchData(city, degree);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [degree]);
 
@@ -175,16 +139,12 @@ function App() {
 			.then(
 				(result) => {
 					if (result['cod'] !== 200) {
-						setIsLoaded(false);
-						setError(result);
 					} else {
 						alanBtnRef.btnInstance.callProjectApi('readWeather', result, function (error, result) {});
 					}
 				},
 				(error) => {
-					setIsLoaded(false);
-					setError(error);
-					setWeatherType(error);
+					console.log(error);
 				},
 			);
 	}
@@ -196,7 +156,7 @@ function App() {
 			key: process.env.REACT_APP_ALANAPI,
 			onCommand: (commandData) => {
 				if (commandData.command === 'searchCity') {
-					updateUrls(commandData.city, degree);
+					reFetchData(commandData.city, degree);
 				}
 				if (commandData.command === 'weatherData') {
 					sendDataToAlan(commandData.city);
@@ -211,6 +171,7 @@ function App() {
 				}
 			},
 		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	if (cWeatherError || forecastError) {
@@ -223,11 +184,10 @@ function App() {
 		);
 	} else {
 		return (
-			// <div className={weather(weatherType)}>
 			<BookmarkProvider>
-				<div className={weather(weatherType)}>
+				<div className={weather(cWeatherData.weather[0].main)}>
 					<Navbar changeUnit={degree} setChangeUnit={setDegree} />
-					<main className="main-div" id={weather(weatherType)}>
+					<main className="main-div" id={weather(cWeatherData.weather[0].main)}>
 						<div className="main-div__container">
 							<div className="search-bar-items">
 								<Autocomplete
@@ -235,7 +195,7 @@ function App() {
 									setChangeCity={setCity}
 									changeLabel={label}
 									setChangeLabel={setLabel}
-									update={updateUrls}
+									update={reFetchData}
 									deg={degree}
 									value={city}
 									onChange={(e) => setCity(e.currentTarget.value)}
@@ -251,9 +211,10 @@ function App() {
 							<section id="mapAndWeathercard">
 								<MainWeatherCard data={cWeatherData} changeUnit={degree} />
 								<MapContainer
-									setCWeatherUrl={setCWeatherUrl}
-									setForecastUrl={setForecastUrl}
-									coord={cWeatherData.coord}
+									fetchWeatherData={fetchWeatherData}
+									fetchForeCastData={fetchForeCastData}
+									cWeatherData={cWeatherData}
+									degree={degree}
 								/>
 							</section>
 
@@ -266,11 +227,11 @@ function App() {
 								/>
 							</section>
 
-							<section class="suggested-section">
+							<section className="suggested-section">
 								<HourlyForecast data={forecastDataGrouped[activeWeatherCard]} changeUnit={degree} />
 							</section>
 
-							<section class="suggested-section">
+							<section className="suggested-section">
 								<h2 className="section-heading">Items to bring 🎒</h2>
 								<Box className="box" itemType="things" weather={cWeatherData.weather[0].main} />
 							</section>
@@ -280,17 +241,17 @@ function App() {
 								<Box itemType="activities" weather={cWeatherData.weather[0].main} />
 							</section>
 
-							<section class="suggested-section">
+							<section className="suggested-section">
 								<h2 className="section-heading">Food to eat 😋</h2>
 								<Box itemType="food" weather={cWeatherData.weather[0].main} />
 							</section>
 
-							<section class="suggested-section">
+							<section className="suggested-section">
 								<h2 className="section-heading">Songs to listen to 🎶</h2>
 								<PlaylistRecommendation weather={cWeatherData.weather[0].main} />
 							</section>
 
-							<video src={weather(weatherType)} autoPlay loop muted></video>
+							<video src={weather(cWeatherData.weather[0].main)} autoPlay loop muted></video>
 						</div>
 					</main>
 					<Footer />

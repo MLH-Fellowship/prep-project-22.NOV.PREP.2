@@ -1,21 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-export function useFetch(url) {
+export function useFetch() {
 	const [data, setData] = useState(null);
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
+	const fetchData = (url) => {
 		setLoading(true);
 		fetch(url)
 			.then((response) => response.json())
 			.then((response) => {
-				if (response['cod'] !== '404') {
+				if (response['cod'] !== '404' && response['cod'] !== 401) {
 					setData(response);
 				}
 			})
 			.catch((error) => setError(error))
 			.finally(() => setLoading(false));
-	}, [url]);
-	return { data, error, loading };
+	};
+
+	return [{ data, error, loading }, fetchData];
 }
