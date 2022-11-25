@@ -5,7 +5,9 @@ import Loader from '../Loader';
 const MapContainer = ({ cWeatherData, fetchWeatherData, fetchForeCastData, degree }) => {
 	const updateWidth = () => {
 		if (window.innerWidth < 800) {
-			return 90;
+			return 100;
+		} else if (window.innerWidth <= 1280) {
+			return 35;
 		} else {
 			return 50;
 		}

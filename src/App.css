@@ -88,59 +88,6 @@ video {
 	z-index: -2;
 }
 
-/* #rainy {
-	background-image: url('https://wallpaperstock.net/rainy-day-wallpapers_53815_2560x1440.jpg');
-	height: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	opacity: 0.9;
-	background-attachment: fixed;
-}
-
-#cloudy {
-	background-image: url('https://i.pinimg.com/originals/cb/6d/2c/cb6d2c974f71580b964c1f931e8b2aa3.jpg');
-	height: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	opacity: 0.9;
-	background-attachment: fixed;
-}
-
-#snowy {
-	background-image: url('https://i.pinimg.com/originals/0f/93/ec/0f93ec67785fa42d39f7bdd755294007.jpg');
-	height: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	opacity: 0.9;
-	background-attachment: fixed;
-}
-
-#clear {
-	background-image: url('https://images.unsplash.com/photo-1622278647429-71bc97e904e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80');
-	height: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	opacity: 0.9;
-	background-attachment: fixed;
-}
-
-#haze {
-	background-image: url('https://64.media.tumblr.com/4caefa0f45c9be4cb116af0370847f6d/04c053a20572008c-15/s2048x3072/5d5bf2fb328aac4fad2c434730438dde4fe5e959.jpg');
-	height: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	opacity: 0.9;
-	background-attachment: fixed;
-}
-
-#default {
-	background-color: #133667;
-	height: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	opacity: 0.9;
-} */
-
 .suggested-section {
 	margin-top: 50px;
 }
