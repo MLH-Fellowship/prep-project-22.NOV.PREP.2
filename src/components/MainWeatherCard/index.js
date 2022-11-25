@@ -2,7 +2,7 @@ import '../../assets/css/MainWeatherCard.css';
 import dateFormat from 'dateformat';
 const MainWeatherCard = ({ data, changeUnit }) => {
 	return (
-		<div className="container">
+		<div className="main-weather-card-container">
 			<div className="card">
 				<div>
 					<h3> Weather in {data.name}</h3>

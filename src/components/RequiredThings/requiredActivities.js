@@ -19,7 +19,7 @@ const requiredActivities = {
 	Snow: {
 		'Snowball Fight': icons.snowball,
 		Snowboarding: icons.snowboarding,
-		'Showvel Snow': icons.shovel,
+		'Shovel Snow': icons.shovel,
 	},
 	Mist: {
 		'Read a Book': icons.book,

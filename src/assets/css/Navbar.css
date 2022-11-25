@@ -226,6 +226,10 @@
 		margin-right: 2em;
 	}
 
+	.navbar-container {
+		width: 100%;
+	}
+
 	.navbar-hamburger.active .bar:nth-child(2) {
 		opacity: 0;
 	}
