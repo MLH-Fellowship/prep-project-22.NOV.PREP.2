@@ -58,6 +58,8 @@ function App() {
 				return 'https://joy.videvo.net/videvo_files/video/free/2019-03/large_watermarked/181015_07a_Hollywood_UHD_004_preview.mp4';
 			case 'Haze':
 				return 'https://joy.videvo.net/videvo_files/video/free/2019-04/large_watermarked/190408_01_Alaska_Landscapes1_09_preview.mp4';
+			case 'Mist':
+				return 'https://joy.videvo.net/videvo_files/video/free/2019-04/large_watermarked/190408_01_Alaska_Landscapes1_09_preview.mp4';
 			default:
 				return 'https://joy.videvo.net/videvo_files/video/free/2019-03/large_watermarked/181015_07a_Hollywood_UHD_004_preview.mp4';
 		}
